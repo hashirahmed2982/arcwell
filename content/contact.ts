@@ -1,0 +1,25 @@
+export const contact = {
+  seo: {
+    title: "Contact",
+    description: "Tell us about your project, and we'll get back to you within 24 hours.",
+  },
+  headline: "Let's build something together.",
+  subtext: "Tell us about your project, and we'll get back to you within 24 hours.",
+  form: {
+    name: "Name",
+    email: "Email",
+    company: "Company",
+    service: "Service needed",
+    serviceOptions: ["App", "Web", "ERP", "Design"],
+    budget: "Budget range",
+    budgetOptions: ["Under $5k", "$5k–15k", "$15k–40k", "$40k+"],
+    message: "Message",
+    submit: "Send message",
+    sending: "Sending…",
+    success: "Thanks — we've got your message and will reply within 24 hours.",
+    error: "Something went wrong. Please email us directly instead.",
+    notConfigured: "The form isn't connected yet. Please email us directly.",
+  },
+  otherHeading: "Prefer another way?",
+  bookCall: "Book a call",
+};
