@@ -24,7 +24,7 @@ export function WordReveal({
       {words.map((w, i) => {
         const hl = highlight.includes(w.replace(/[.,—]/g, ""));
         return (
-          <span key={i} aria-hidden className="inline-block overflow-hidden pb-[0.14em] pr-[0.04em] align-bottom">
+          <span key={i} aria-hidden className="inline-block overflow-hidden pb-[0.1em] align-bottom">
             <motion.span
               className="inline-block"
               initial={reduce ? false : { y: "110%", opacity: 0 }}

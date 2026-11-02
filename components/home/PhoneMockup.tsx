@@ -57,7 +57,7 @@ export function PhoneMockup() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0, scale: 0.92, filter: "blur(8px)" }}
                 transition={{ duration: 0.45 }}
-                className="h-full overflow-hidden whitespace-pre-wrap bg-[#fbfaf7] px-4 pt-6 font-mono text-[9px] leading-[1.6] text-muted"
+                className="h-full overflow-hidden whitespace-pre-wrap bg-white px-4 pt-6 font-mono text-[9px] leading-[1.6] text-muted"
               >
                 <Highlighted text={code.slice(0, chars)} />
                 <span className="ml-px inline-block h-3 w-1.5 animate-pulse bg-accent align-middle" />
@@ -89,12 +89,12 @@ export function Highlighted({ text, dark = false }: { text: string; dark?: boole
       {parts.map((p, i) => {
         if (!p) return null;
         let cls = "";
-        if (/^(class|extends|return|const|function|export|import|from|await|async|new)$/.test(p)) cls = dark ? "text-[#e59a73]" : "text-[#b2582f]";
-        else if (/^@/.test(p)) cls = dark ? "text-[#d9b56a]" : "text-[#9a7424]";
-        else if (/^[A-Z]/.test(p)) cls = dark ? "text-[#9fb0ff]" : "text-[#3446c4]";
-        else if (/^\d+$/.test(p)) cls = dark ? "text-[#a9c99a]" : "text-[#4f7a45]";
-        else if (/^["']/.test(p)) cls = dark ? "text-[#a9c99a]" : "text-[#4f7a45]";
-        return cls ? <span key={i} className={cls}>{p}</span> : <span key={i} className={dark ? "text-[#e9e2d6]/85" : "text-ink/75"}>{p}</span>;
+        if (/^(class|extends|return|const|function|export|import|from|await|async|new)$/.test(p)) cls = dark ? "text-[#ff7b72]" : "text-[#cf222e]";
+        else if (/^@/.test(p)) cls = dark ? "text-[#d2a8ff]" : "text-[#8250df]";
+        else if (/^[A-Z]/.test(p)) cls = dark ? "text-[#79c0ff]" : "text-[#0550ae]";
+        else if (/^\d+$/.test(p)) cls = dark ? "text-[#a5d6ff]" : "text-[#0a3069]";
+        else if (/^["']/.test(p)) cls = dark ? "text-[#a5d6ff]" : "text-[#0a3069]";
+        return cls ? <span key={i} className={cls}>{p}</span> : <span key={i} className={dark ? "text-[#e6edf3]/85" : "text-ink/75"}>{p}</span>;
       })}
     </>
   );

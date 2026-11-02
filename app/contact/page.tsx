@@ -17,16 +17,16 @@ const links = [
 export default function ContactPage() {
   return (
     <section className="relative overflow-hidden pb-24 pt-36 md:pt-48">
-      <div aria-hidden className="absolute left-[-15%] top-[-10%] -z-10 h-[700px] w-[700px] rounded-full bg-[#fbe9d3] opacity-70 blur-[120px]" />
+      <div aria-hidden className="dot-bg absolute inset-x-0 top-0 -z-10 h-[600px] [mask-image:linear-gradient(to_bottom,black,transparent)]" />
       <div className="container-x grid gap-16 lg:grid-cols-[1fr_1.1fr]">
         <div>
-          <Reveal><p className="eyebrow mb-8 flex items-center gap-3"><span className="h-px w-8 bg-ink/40" />Contact</p></Reveal>
-          <WordReveal text={contact.headline} highlight={["together"]} className="font-display text-balance text-6xl leading-[0.98] md:text-8xl" />
+          <Reveal><p className="chapter mb-6">Contact</p></Reveal>
+          <WordReveal text={contact.headline} highlight={["together"]} className="font-display text-balance text-5xl leading-[1.04] md:text-[4.25rem]" />
           <Reveal delay={0.3}>
             <p className="mt-8 max-w-md text-lg leading-relaxed text-muted">{contact.subtext}</p>
           </Reveal>
           <Reveal delay={0.4}>
-            <h2 className="chapter mb-4 mt-14">{contact.otherHeading}</h2>
+            <h2 className="eyebrow mb-4 mt-14">{contact.otherHeading}</h2>
             <ul className="divide-y divide-line border-y border-line">
               {links.map((l) => (
                 <li key={l.label}>

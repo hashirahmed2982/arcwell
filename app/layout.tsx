@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import { site } from "@/content/site";
 import { Header } from "@/components/layout/Header";
@@ -10,7 +10,6 @@ import "./globals.css";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" });
 const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap" });
-const instrument = Instrument_Serif({ subsets: ["latin"], weight: "400", style: ["normal", "italic"], variable: "--font-instrument", display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -22,7 +21,7 @@ export const metadata: Metadata = {
   icons: { icon: "/icon.svg" },
 };
 
-export const viewport: Viewport = { themeColor: "#f5f1ea", colorScheme: "light" };
+export const viewport: Viewport = { themeColor: "#ffffff", colorScheme: "light" };
 
 const plausible = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
 
@@ -39,13 +38,13 @@ const orgJsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${geist.variable} ${geistMono.variable} ${instrument.variable}`}>
-      <body className="grain min-h-screen overflow-x-hidden">
+    <html lang="en" className={`${geist.variable} ${geistMono.variable}`}>
+      <body className="min-h-screen overflow-x-hidden">
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[80] focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-paper">
           Skip to content
         </a>
         <SmoothScroll />
-        <Cursor />
+        {site.customCursor && <Cursor />}
         <Header />
         <main id="main">{children}</main>
         <Footer />

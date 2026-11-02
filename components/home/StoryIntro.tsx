@@ -2,20 +2,20 @@ import { home } from "@/content/home";
 import { StoryText } from "@/components/motion/StoryText";
 import { Reveal } from "@/components/motion/Reveal";
 
-/** Chapter one: the problem, told in a single paragraph that "writes itself" as you scroll. */
+/** 01 — The challenge: one paragraph that darkens word by word as you scroll, then the answer. */
 export function StoryIntro() {
   const { story } = home;
   return (
-    <section className="relative pb-10 pt-24 md:pb-12 md:pt-40">
-      <div className="container-x">
-        <div className="grid gap-10 md:grid-cols-[180px_1fr]">
-          <Reveal><p className="chapter md:pt-4">{story.chapter}</p></Reveal>
-          <div>
-            <StoryText text={story.text} className="font-display max-w-4xl text-pretty text-[2.1rem] leading-[1.18] md:text-[3.4rem] md:leading-[1.12]" />
-            <Reveal delay={0.1}>
-              <p className="font-display mt-10 text-[2.1rem] italic leading-tight text-accent md:text-[3.4rem]">{story.turn}</p>
-            </Reveal>
-          </div>
+    <section className="relative py-24 md:py-36">
+      <div className="container-x grid gap-8 lg:grid-cols-[220px_1fr]">
+        <Reveal><p className="chapter lg:pt-3">{story.chapter}</p></Reveal>
+        <div>
+          <StoryText text={story.text} className="font-display max-w-4xl text-pretty text-[1.9rem] leading-[1.25] md:text-[2.75rem] md:leading-[1.2]" />
+          <Reveal delay={0.1}>
+            <div className="mt-10 flex max-w-3xl gap-5 border-l-2 border-accent pl-6">
+              <p className="text-xl font-medium leading-relaxed text-ink md:text-2xl">{story.turn}</p>
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>

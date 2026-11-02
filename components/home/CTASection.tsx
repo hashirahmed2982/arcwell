@@ -1,24 +1,26 @@
 import { Reveal } from "@/components/motion/Reveal";
-import { BookCallButton } from "@/components/ui/BookCallButton";
 import { site } from "@/content/site";
 
-/** The last page of the story: a warm, quiet invitation. */
 export function CTASection({ headline, subtext, button }: { headline: string; subtext?: string; button: string }) {
   return (
-    <section className="relative py-24 md:py-36">
+    <section className="relative py-20 md:py-28">
       <div className="container-x">
         <Reveal>
-          <div className="relative overflow-hidden rounded-[2rem] bg-[#ead9c6] px-6 py-20 text-center md:px-16 md:py-28">
-            <svg aria-hidden viewBox="0 0 400 220" className="pointer-events-none absolute -bottom-6 left-1/2 w-[640px] max-w-none -translate-x-1/2 opacity-[0.35]">
-              <path d="M40 220V140a160 160 0 0 1 320 0v80" fill="none" stroke="#c4683d" strokeWidth="1.2" />
-              <path d="M80 220V140a120 120 0 0 1 240 0v80" fill="none" stroke="#c4683d" strokeWidth="1.2" />
-            </svg>
-            <p className="chapter relative mb-6">The next chapter is yours</p>
-            <h2 className="font-display relative mx-auto max-w-3xl text-balance text-5xl leading-[1.02] md:text-8xl">{headline}</h2>
-            {subtext && <p className="relative mx-auto mt-6 max-w-xl text-lg text-ink/70">{subtext}</p>}
-            <div className="relative mt-10 flex flex-wrap items-center justify-center gap-5">
-              <BookCallButton label={button} />
-              <a href={`mailto:${site.email}`} className="text-ink/70 underline decoration-ink/25 underline-offset-4 transition-colors hover:text-ink">or email {site.email}</a>
+          <div className="relative overflow-hidden rounded-3xl bg-ink-2 px-6 py-16 md:px-16 md:py-20">
+            <div aria-hidden className="absolute inset-0 opacity-[0.35] [background-image:radial-gradient(rgb(255_255_255/0.18)_1px,transparent_1px)] [background-size:22px_22px] [mask-image:radial-gradient(ellipse_at_right,black,transparent_70%)]" />
+            <div aria-hidden className="absolute -right-24 -top-24 h-80 w-80 rounded-full bg-accent/40 blur-[100px]" />
+            <div className="relative grid items-center gap-10 lg:grid-cols-[1.4fr_1fr]">
+              <div>
+                <h2 className="font-display text-balance text-4xl leading-[1.08] text-white md:text-5xl">{headline}</h2>
+                {subtext && <p className="mt-5 max-w-xl text-lg text-white/65">{subtext}</p>}
+              </div>
+              <div className="flex flex-col gap-4 lg:items-end">
+                <a href={site.bookCallUrl} target="_blank" rel="noopener noreferrer" className="group inline-flex w-fit items-center gap-2.5 rounded-lg bg-white px-6 py-3.5 font-semibold text-ink transition-colors hover:bg-accent hover:text-white">
+                  {button}
+                  <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                </a>
+                <a href={`mailto:${site.email}`} className="text-white/65 transition-colors hover:text-white">or email {site.email}</a>
+              </div>
             </div>
           </div>
         </Reveal>

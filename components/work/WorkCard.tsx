@@ -44,7 +44,7 @@ export function WorkCard({ study, priority = false }: { study: CaseStudy; priori
           window.setTimeout(() => router.push(href), 560);
         }}
       >
-        <div className="relative overflow-hidden rounded-[1.75rem] px-6 py-10 [perspective:1200px] md:px-12 md:py-14" style={{ background: tint }}>
+        <div className="relative overflow-hidden rounded-2xl border border-line px-6 py-10 transition-colors duration-300 [perspective:1200px] group-hover:border-accent/30 md:px-12 md:py-14" style={{ background: tint }}>
           <motion.div
             style={reduce ? undefined : { rotateX: rotX, rotateY: rotY, transformStyle: "preserve-3d" }}
             className="relative flex aspect-[16/11] items-center justify-center"
@@ -61,10 +61,10 @@ export function WorkCard({ study, priority = false }: { study: CaseStudy; priori
         <div className="mt-6 flex items-start justify-between gap-6">
           <div>
             <p className="eyebrow">{study.clientType}</p>
-            <h3 className="font-display mt-2 text-3xl leading-tight md:text-4xl">{study.title}</h3>
+            <h3 className="font-display mt-2 text-2xl leading-tight md:text-[1.75rem]">{study.title}</h3>
             <p className="mt-2 text-muted">{study.summary}</p>
           </div>
-          <span aria-hidden className="mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-ink/15 transition-all duration-300 group-hover:rotate-[-45deg] group-hover:border-ink group-hover:bg-ink group-hover:text-paper">→</span>
+          <span aria-hidden className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-line transition-all duration-300 group-hover:border-accent group-hover:bg-accent group-hover:text-white">→</span>
         </div>
       </a>
 
@@ -73,7 +73,7 @@ export function WorkCard({ study, priority = false }: { study: CaseStudy; priori
           aria-hidden
           className="fixed z-[65]"
           style={{ background: tint }}
-          initial={{ top: expand.top, left: expand.left, width: expand.width, height: expand.height, borderRadius: 28 }}
+          initial={{ top: expand.top, left: expand.left, width: expand.width, height: expand.height, borderRadius: 16 }}
           animate={{ top: 0, left: 0, width: "100vw", height: "100vh", borderRadius: 0 }}
           transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
         />

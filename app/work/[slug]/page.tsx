@@ -35,17 +35,17 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
   return (
     <>
       {/* Opens on the same tint the card expanded into, so the hand-off feels continuous */}
-      <section className="pb-20 pt-36 md:pt-44" style={{ background: tint }}>
+      <section className="border-b border-line pb-20 pt-36 md:pt-44" style={{ background: tint }}>
         <div className="container-x">
           <Reveal>
             <Link href="/work" className="eyebrow transition-colors hover:text-ink">← {L.back}</Link>
-            <p className="eyebrow mt-10">{study.clientType}</p>
+            <p className="chapter mt-10">{study.clientType}</p>
           </Reveal>
-          <WordReveal text={study.title} className="font-display mt-4 max-w-5xl text-balance text-5xl leading-[1.02] md:text-8xl" />
+          <WordReveal text={study.title} className="font-display mt-4 max-w-4xl text-balance text-4xl leading-[1.06] md:text-6xl" />
           <Reveal delay={0.3}>
             <ul className="mt-8 flex flex-wrap gap-2" aria-label={L.tech}>
               {study.tech.map((t) => (
-                <li key={t} className="rounded-full border border-ink/20 px-4 py-1.5 text-sm">{t}</li>
+                <li key={t} className="rounded-md border border-line bg-white px-3 py-1.5 text-sm font-medium">{t}</li>
               ))}
             </ul>
           </Reveal>
@@ -66,7 +66,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           {([[L.challenge, study.challenge], [L.solution, study.solution], [L.result, study.result]] as const).map(([label, text], i) => (
             <Reveal key={label} className="grid gap-4 border-t border-line pt-8 md:grid-cols-[200px_1fr]">
               <h2 className="chapter">{String(i + 1).padStart(2, "0")} — {label}</h2>
-              <p className="font-display text-3xl leading-snug md:text-4xl">{text}</p>
+              <p className="text-xl leading-relaxed md:text-2xl">{text}</p>
             </Reveal>
           ))}
         </div>
@@ -88,7 +88,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         <section className="border-t border-line">
           <Link href={`/work/${next.slug}`} className="container-x group flex flex-col gap-3 py-16 md:py-24">
             <span className="chapter">{L.next}</span>
-            <span className="font-display text-4xl leading-tight transition-colors group-hover:text-accent md:text-7xl">
+            <span className="font-display text-3xl leading-tight transition-colors group-hover:text-accent md:text-5xl">
               {next.title} <span aria-hidden className="inline-block transition-transform duration-300 group-hover:translate-x-2">→</span>
             </span>
           </Link>

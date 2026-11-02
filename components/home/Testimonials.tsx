@@ -9,8 +9,8 @@ export function Testimonials() {
       <div className="container-x grid gap-10 md:grid-cols-2">
         {testimonials.map((t, i) => (
           <Reveal key={i} delay={i * 0.1}>
-            <figure className="border-t border-ink pt-8">
-              <blockquote className="font-display text-3xl leading-snug">“{t.quote}”</blockquote>
+            <figure className="card h-full rounded-2xl p-8">
+              <blockquote className="text-xl leading-relaxed">“{t.quote}”</blockquote>
               <figcaption className="mt-6 text-muted"><span className="font-medium text-ink">{t.name}</span> · {t.role}</figcaption>
             </figure>
           </Reveal>

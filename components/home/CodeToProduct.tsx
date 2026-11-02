@@ -68,38 +68,38 @@ export function CodeToProduct() {
     <section ref={section} className="relative" aria-labelledby="c2p-heading">
       <div ref={pin} className="flex min-h-screen items-center py-6">
         <div className="mx-auto w-full max-w-[88rem] px-3 md:px-5">
-          <div className="rounded-[2rem] bg-ink-2 px-5 py-16 text-paper md:px-14 md:py-20">
+          <div className="rounded-3xl bg-ink-2 px-5 py-16 text-white md:px-14 md:py-20">
             <div className="mb-12 grid gap-6 md:grid-cols-[1fr_auto] md:items-end">
               <div className="max-w-3xl">
-                <p className="chapter mb-5 !text-[#b5ab9c]">{c.chapter}</p>
-                <h2 id="c2p-heading" className="font-display text-balance text-5xl leading-[1.02] md:text-7xl [&_em]:!text-[#e59a73]">
+                <p className="chapter mb-5 !text-[#8fb0ff]">{c.chapter}</p>
+                <h2 id="c2p-heading" className="font-display text-balance text-4xl leading-[1.08] md:text-[3.25rem] [&_em]:!text-[#8fb0ff]">
                   <Emphasis text={c.heading} />
                 </h2>
               </div>
-              <p className="max-w-xs text-[#b5ab9c]">{c.subtext}</p>
+              <p className="max-w-xs text-white/60">{c.subtext}</p>
             </div>
 
             <div className="grid gap-5 lg:grid-cols-2" aria-hidden>
               {/* Editor */}
-              <div className="overflow-hidden rounded-xl border border-white/10 bg-[#1b1916]">
-                <div className="flex items-center justify-between border-b border-white/10 px-4 py-2.5 text-[11px] text-[#b5ab9c]">
+              <div className="overflow-hidden rounded-xl border border-white/10 bg-[#0d1117]">
+                <div className="flex items-center justify-between border-b border-white/10 px-4 py-2.5 text-[11px] text-white/60">
                   <span className="font-mono">dashboard.tsx</span>
                   <span className="flex items-center gap-2">
                     <span className="h-1 w-20 overflow-hidden rounded-full bg-white/10">
-                      <span className="block h-full bg-[#e59a73]" style={{ width: `${p * 100}%` }} />
+                      <span className="block h-full bg-[#4d7cff]" style={{ width: `${p * 100}%` }} />
                     </span>
                   </span>
                 </div>
                 <pre className="h-[340px] overflow-hidden whitespace-pre-wrap p-5 font-mono text-[12px] leading-[1.75] md:h-[380px] md:text-[13px]">
                   <Highlighted text={shown} dark />
-                  <span className="ml-px inline-block h-4 w-[7px] animate-pulse bg-[#e59a73] align-middle" />
+                  <span className="ml-px inline-block h-4 w-[7px] animate-pulse bg-[#4d7cff] align-middle" />
                 </pre>
               </div>
 
               {/* Product */}
               <BrowserFrame url="erp.alnoortraders.pk" className="!shadow-none">
-                <div className={`flex h-[340px] bg-[#fbfaf7] text-ink md:h-[380px] ${piece("layout")}`}>
-                  <aside className="hidden w-36 shrink-0 flex-col gap-0.5 border-r border-ink/8 bg-[#f6f2eb] p-3 text-[11px] sm:flex">
+                <div className={`flex h-[340px] bg-white text-ink md:h-[380px] ${piece("layout")}`}>
+                  <aside className="hidden w-36 shrink-0 flex-col gap-0.5 border-r border-ink/8 bg-[#f7f8fa] p-3 text-[11px] sm:flex">
                     <p className="mb-3 flex items-center gap-1.5 font-semibold"><span className="h-4 w-4 rounded bg-accent" /> Al-Noor Traders</p>
                     {["Dashboard", "Sales", "Inventory", "Purchasing", "HR & Payroll", "Reports"].map((m, i) => (
                       <span key={m} className={`rounded-md px-2 py-1.5 ${i === 0 ? "bg-white font-medium shadow-[0_1px_2px_rgba(0,0,0,0.06)]" : "text-muted"}`}>{m}</span>
@@ -123,7 +123,7 @@ export function CodeToProduct() {
                             className="flex-1 origin-bottom rounded-t-[3px] transition-transform duration-700"
                             style={{
                               height: `${h}%`,
-                              background: i === bars.length - 1 ? "#3446c4" : "#3446c433",
+                              background: i === bars.length - 1 ? "#2453e6" : "#2453e633",
                               transform: `scaleY(${on("chart") ? 1 : 0})`,
                               transitionDelay: `${i * 40}ms`,
                             }}
@@ -136,7 +136,7 @@ export function CodeToProduct() {
                         <div key={id} className="flex items-center gap-3 border-b border-ink/6 px-3 py-2 last:border-0">
                           <span className="font-mono text-[9.5px] text-muted">{id}</span>
                           <span className="flex-1 truncate">{n}</span>
-                          <span className={`rounded-full px-2 py-0.5 text-[9.5px] ${st === "Paid" ? "bg-[#e3ecdf] text-[#4f7a45]" : "bg-[#f6e2d7] text-[#b2582f]"}`}>{st}</span>
+                          <span className={`rounded-full px-2 py-0.5 text-[9.5px] ${st === "Paid" ? "bg-[#dcfce7] text-[#15803d]" : "bg-[#fef3c7] text-[#b45309]"}`}>{st}</span>
                         </div>
                       ))}
                     </div>

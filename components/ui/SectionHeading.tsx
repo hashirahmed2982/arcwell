@@ -1,14 +1,14 @@
 import { Reveal } from "@/components/motion/Reveal";
 
-/** Chapter label + serif heading. Wrap a word in *asterisks* to set it in the italic accent. */
-export function SectionHeading({ chapter, title, intro, center }: { chapter?: string; title: string; intro?: string; center?: boolean }) {
+/** Numbered section label + heading. Wrap words in *asterisks* to show them in the accent colour. */
+export function SectionHeading({ chapter, title, intro, center, invert }: { chapter?: string; title: string; intro?: string; center?: boolean; invert?: boolean }) {
   return (
-    <Reveal className={`mb-14 max-w-3xl md:mb-20 ${center ? "mx-auto text-center" : ""}`}>
-      {chapter && <p className="chapter mb-5">{chapter}</p>}
-      <h2 className="font-display text-balance text-5xl leading-[1.02] md:text-7xl">
+    <Reveal className={`mb-12 max-w-3xl md:mb-16 ${center ? "mx-auto text-center" : ""}`}>
+      {chapter && <p className={`chapter mb-5 ${invert ? "!text-[#8fb0ff]" : ""}`}>{chapter}</p>}
+      <h2 className={`font-display text-balance text-4xl leading-[1.08] md:text-[3.25rem] ${invert ? "text-white" : ""}`}>
         <Emphasis text={title} />
       </h2>
-      {intro && <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-muted">{intro}</p>}
+      {intro && <p className={`mt-5 max-w-xl text-pretty text-lg leading-relaxed ${invert ? "text-white/65" : "text-muted"}`}>{intro}</p>}
     </Reveal>
   );
 }

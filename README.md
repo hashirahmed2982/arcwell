@@ -7,13 +7,14 @@ Animation: Framer Motion (UI + page transitions), GSAP + ScrollTrigger (scroll s
 
 ## Design
 
-Warm and editorial rather than "tech": paper background (`#f5f1ea`), ink text, a single cobalt accent and a clay
-highlight, set in Instrument Serif (headlines) and Geist (body). The home page reads as a short story in chapters —
-the problem, what we build, code to product, why us, how we work, selected work — ending on "the next chapter is yours".
-The 3D hero is a matte ceramic arch (the "arc" in Arcwell) with the phone standing in its opening.
+Clean and professional: white and cool-grey surfaces, deep navy text (`#0b1b33`) and one blue accent (`#2453e6`),
+set entirely in Geist. The home page tells the story in numbered sections — 01 The challenge, 02 Services,
+03 Engineering, 04 Why us, 05 Process, 06 Case studies — then closes with the call to action.
+The hero pairs a product composition (ERP dashboard + phone that types code and becomes an app) with a
+dotted 3D globe showing arcs from Karachi to the markets in `content/site.ts`.
 
 Colours and fonts live in `app/globals.css` (`@theme`). In headings from `/content`, wrap words in `*asterisks*`
-to set them in the italic accent.
+to show them in the accent colour. The custom cursor from the brief is available but off (`customCursor` in `content/site.ts`).
 
 ## Run it
 

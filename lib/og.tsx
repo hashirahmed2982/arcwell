@@ -16,10 +16,10 @@ export function ogImage(title: string, eyebrow = site.tagline) {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: 72,
-          background: "#f5f1ea",
-          backgroundImage: "radial-gradient(circle at 90% 0%, #fbe3c9, transparent 50%)",
-          color: "#1d1b18",
-          fontFamily: "serif",
+          background: "#ffffff",
+          backgroundImage: "radial-gradient(circle at 92% 0%, #dbe5fd, transparent 45%)",
+          color: "#0b1b33",
+          fontFamily: "sans-serif",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
@@ -28,20 +28,20 @@ export function ogImage(title: string, eyebrow = site.tagline) {
               width: 56,
               height: 56,
               borderRadius: 14,
-              background: "#1d1b18",
+              background: "#0b1b33",
               display: "flex",
               alignItems: "flex-end",
               justifyContent: "center",
               paddingBottom: 10,
             }}
           >
-            <div style={{ width: 28, height: 34, borderTopLeftRadius: 14, borderTopRightRadius: 14, border: "4px solid #f5f1ea", borderBottom: "none" }} />
+            <div style={{ width: 28, height: 34, borderTopLeftRadius: 14, borderTopRightRadius: 14, border: "4px solid #ffffff", borderBottom: "none" }} />
           </div>
-          <div style={{ fontSize: 36 }}>{site.name}</div>
+          <div style={{ fontSize: 36, fontWeight: 700 }}>{site.name}</div>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-          <div style={{ fontSize: 28, color: "#6f685e", fontStyle: "italic" }}>{eyebrow}</div>
-          <div style={{ fontSize: 84, lineHeight: 1.02, letterSpacing: -1.5, maxWidth: 1000 }}>
+          <div style={{ fontSize: 26, color: "#2453e6", fontWeight: 700, letterSpacing: 2, textTransform: "uppercase" }}>{eyebrow}</div>
+          <div style={{ fontSize: 76, fontWeight: 700, lineHeight: 1.05, letterSpacing: -2, maxWidth: 1000 }}>
             {title}
           </div>
         </div>
@@ -50,7 +50,7 @@ export function ogImage(title: string, eyebrow = site.tagline) {
             height: 6,
             width: 120,
             borderRadius: 6,
-            background: "#c4683d",
+            background: "#2453e6",
           }}
         />
       </div>

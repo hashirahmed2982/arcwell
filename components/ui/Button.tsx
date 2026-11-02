@@ -12,11 +12,11 @@ type Props = {
 
 export function Button({ href, children, variant = "primary", external, className = "" }: Props) {
   const base =
-    "group relative inline-flex items-center gap-2.5 rounded-full px-6 py-3.5 text-[15px] font-medium transition-colors duration-300";
+    "group relative inline-flex items-center gap-2.5 rounded-lg px-6 py-3.5 text-[15px] font-semibold transition-colors duration-200";
   const styles =
     variant === "primary"
-      ? "bg-ink text-paper hover:bg-accent"
-      : "border border-ink/20 text-ink hover:border-ink hover:bg-ink hover:text-paper";
+      ? "bg-accent text-white shadow-[0_8px_20px_-10px_rgba(36,83,230,0.7)] hover:bg-[#1c45c9]"
+      : "border border-ink/15 bg-white text-ink hover:border-ink/40";
   const inner = (
     <>
       <span>{children}</span>

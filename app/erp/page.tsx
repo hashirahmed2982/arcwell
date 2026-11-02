@@ -23,13 +23,13 @@ const icons = [
 export default function ErpPage() {
   return (
     <>
-      <PageHero eyebrow={erp.hero.eyebrow} title={erp.hero.headline} intro={erp.hero.subtext} highlight={["your", "business"]}>
+      <PageHero eyebrow={erp.hero.eyebrow} title={erp.hero.headline} intro={erp.hero.subtext} highlight={["business"]}>
         <BookCallButton label={erp.hero.button} />
       </PageHero>
 
-      <section className="pb-16">
+      <section className="pt-16 pb-8">
         <Reveal className="container-x" y={40}>
-          <div className="relative rounded-[2rem] bg-[#e6e3ee] px-5 pb-14 pt-10 md:px-16 md:pb-20 md:pt-16">
+          <div className="relative rounded-3xl border border-line bg-paper-2 px-5 pb-14 pt-10 md:px-16 md:pb-20 md:pt-16">
             <div className="relative mx-auto max-w-4xl">
               <BrowserFrame url="erp.alnoortraders.pk">
                 <ErpScreen />
@@ -46,26 +46,26 @@ export default function ErpPage() {
 
       <section className="py-24 md:py-32">
         <div className="container-x">
-          <SectionHeading chapter="What's inside" title={erp.modulesHeading} />
-          <ul className="grid border-l border-t border-line sm:grid-cols-2 lg:grid-cols-3">
+          <SectionHeading chapter="Modules" title="Everything your operations need, in one system" />
+          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {erp.modules.map((m, i) => (
-              <Reveal as="li" key={m} delay={(i % 3) * 0.08} className="group border-b border-r border-line p-8 transition-colors duration-500 hover:bg-paper-2">
-                <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden className="text-accent transition-transform duration-500 group-hover:-translate-y-1">
+              <Reveal as="li" key={m} delay={(i % 3) * 0.08} className="card group rounded-2xl p-7 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/30">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent-soft text-accent"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden>
                   <path d={icons[i % icons.length]} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-                <p className="font-display mt-10 text-[1.75rem] leading-tight">{m}</p>
+                </svg></span>
+                <p className="mt-6 text-lg font-semibold tracking-tight">{m}</p>
               </Reveal>
             ))}
           </ul>
         </div>
       </section>
 
-      <section className="py-20">
+      <section className="bg-paper-2 py-20">
         <div className="container-x">
-          <Reveal><p className="chapter mb-8">{erp.industriesHeading}</p></Reveal>
+          <SectionHeading chapter="Industries" title={erp.industriesHeading} />
           <ul className="flex flex-wrap gap-3">
             {erp.industries.map((ind, i) => (
-              <Reveal as="li" key={ind} delay={i * 0.06} className="font-display rounded-full border border-ink/20 px-6 py-3 text-2xl transition-colors duration-300 hover:border-ink hover:bg-ink hover:text-paper md:text-3xl">
+              <Reveal as="li" key={ind} delay={i * 0.06} className="rounded-lg border border-line bg-white px-5 py-3 text-[15px] font-medium shadow-sm transition-colors duration-300 hover:border-accent hover:text-accent md:text-base">
                 {ind}
               </Reveal>
             ))}

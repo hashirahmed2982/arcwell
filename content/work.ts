@@ -40,7 +40,7 @@ export const caseStudies: CaseStudy[] = [
     result: "Placeholder — add a real, measurable outcome (time saved, users, rating, launch date).",
     tech: ["Flutter", "Next.js", "Node.js"],
     mock: "erp",
-    accent: ["#e6dccb", "#3446c4"],
+    accent: ["#eef2f9", "#2453e6"],
     images: [],
   },
   {
@@ -53,7 +53,7 @@ export const caseStudies: CaseStudy[] = [
     result: "Placeholder — add a real, measurable outcome (time saved, users, rating, launch date).",
     tech: ["Flutter", "Firebase"],
     mock: "mobile",
-    accent: ["#ecd8cb", "#c4683d"],
+    accent: ["#f1f5f9", "#0f766e"],
     images: [],
   },
   {
@@ -66,7 +66,7 @@ export const caseStudies: CaseStudy[] = [
     result: "Placeholder — add a real, measurable outcome (time saved, users, rating, launch date).",
     tech: ["React", "Next.js", "Node.js"],
     mock: "web",
-    accent: ["#dce3d6", "#4f6b4a"],
+    accent: ["#f3f1fb", "#4f46e5"],
     images: [],
   },
 ];

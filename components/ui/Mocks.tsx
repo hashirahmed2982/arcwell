@@ -6,9 +6,9 @@ import type { MockKind } from "@/content/work";
 export function PhoneFrame({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
     <div
-      className={`relative aspect-[9/19.2] w-full rounded-[2.6rem] bg-[#26231f] p-[7px] shadow-[0_2px_0_1px_#3a352e_inset,0_50px_80px_-30px_rgba(50,35,20,0.45),0_20px_30px_-20px_rgba(50,35,20,0.35)] ${className}`}
+      className={`relative aspect-[9/19.2] w-full rounded-[2.6rem] bg-[#111827] p-[7px] shadow-[0_2px_0_1px_#374151_inset,0_50px_80px_-30px_rgba(11,27,51,0.45),0_20px_30px_-20px_rgba(11,27,51,0.3)] ${className}`}
     >
-      <div className="relative h-full w-full overflow-hidden rounded-[2.15rem] bg-[#fbfaf7]">
+      <div className="relative h-full w-full overflow-hidden rounded-[2.15rem] bg-white">
         <div className="absolute left-1/2 top-2.5 z-20 h-[22px] w-[30%] -translate-x-1/2 rounded-full bg-[#141210]" />
         <div className="relative z-10 flex items-center justify-between px-6 pt-3 text-[10px] font-semibold text-ink">
           <span>9:41</span>
@@ -25,8 +25,8 @@ export function PhoneFrame({ children, className = "" }: { children: ReactNode; 
 
 export function BrowserFrame({ children, className = "", url = "app.yourcompany.com" }: { children: ReactNode; className?: string; url?: string }) {
   return (
-    <div className={`overflow-hidden rounded-xl border border-ink/10 bg-white shadow-[0_50px_90px_-40px_rgba(50,35,20,0.4),0_10px_20px_-15px_rgba(50,35,20,0.25)] ${className}`}>
-      <div className="flex items-center gap-1.5 border-b border-ink/8 bg-[#f1ece4] px-3.5 py-2.5">
+    <div className={`overflow-hidden rounded-xl border border-ink/10 bg-white shadow-[0_50px_90px_-40px_rgba(11,27,51,0.35),0_10px_20px_-15px_rgba(11,27,51,0.2)] ${className}`}>
+      <div className="flex items-center gap-1.5 border-b border-ink/8 bg-[#f3f4f6] px-3.5 py-2.5">
         <span className="h-2.5 w-2.5 rounded-full bg-[#e8786b]" />
         <span className="h-2.5 w-2.5 rounded-full bg-[#e8c160]" />
         <span className="h-2.5 w-2.5 rounded-full bg-[#7fbf6a]" />
@@ -45,7 +45,7 @@ const Avatar = ({ initials, tone }: { initials: string; tone: string }) => (
 );
 
 /** Booking app home screen. */
-export function MobileAppScreen({ accent = "#3446c4" }: { accent?: string }) {
+export function MobileAppScreen({ accent = "#2453e6" }: { accent?: string }) {
   return (
     <div className="flex h-[calc(100%-24px)] flex-col gap-3.5 px-4 pb-3 pt-4 text-ink">
       <div className="flex items-center justify-between">
@@ -53,7 +53,7 @@ export function MobileAppScreen({ accent = "#3446c4" }: { accent?: string }) {
           <p className="text-[10px] text-muted">Tuesday, 14 May</p>
           <p className="text-[17px] font-semibold tracking-tight">Hello, Sara</p>
         </div>
-        <Avatar initials="SA" tone="#c4683d" />
+        <Avatar initials="SA" tone="#0ea5e9" />
       </div>
       <div className="rounded-2xl p-3.5 text-white" style={{ background: accent }}>
         <p className="text-[9px] uppercase tracking-wider opacity-75">Next appointment</p>
@@ -71,8 +71,8 @@ export function MobileAppScreen({ accent = "#3446c4" }: { accent?: string }) {
       <p className="text-[11px] font-semibold">Recent</p>
       <div className="space-y-2">
         {[
-          ["Blood test results", "Ready to view", "#6f8466", "BT"],
-          ["Prescription refill", "Sent to pharmacy", "#c4683d", "RX"],
+          ["Blood test results", "Ready to view", "#16a34a", "BT"],
+          ["Prescription refill", "Sent to pharmacy", "#0ea5e9", "RX"],
           ["Follow-up booked", "21 May, 11:00 AM", accent, "FU"],
         ].map(([t, sub, tone, ini]) => (
           <div key={t} className="flex items-center gap-2.5 rounded-xl bg-white p-2.5 shadow-[0_1px_2px_rgba(0,0,0,0.05)]">
@@ -100,11 +100,11 @@ export function MobileAppScreen({ accent = "#3446c4" }: { accent?: string }) {
 const bars = [42, 55, 48, 62, 58, 71, 66, 78, 74, 86, 81, 92];
 
 /** ERP dashboard for a distribution business. */
-export function ErpScreen({ accent = "#3446c4", compact = false }: { accent?: string; compact?: boolean }) {
+export function ErpScreen({ accent = "#2453e6", compact = false }: { accent?: string; compact?: boolean }) {
   return (
-    <div className="flex bg-[#fbfaf7] text-ink">
+    <div className="flex bg-white text-ink">
       {!compact && (
-        <aside className="hidden w-36 shrink-0 flex-col gap-0.5 border-r border-ink/8 bg-[#f6f2eb] p-3 text-[10.5px] sm:flex">
+        <aside className="hidden w-36 shrink-0 flex-col gap-0.5 border-r border-ink/8 bg-[#f7f8fa] p-3 text-[10.5px] sm:flex">
           <p className="mb-3 flex items-center gap-1.5 font-semibold">
             <span className="h-4 w-4 rounded" style={{ background: accent }} /> Al-Noor Traders
           </p>
@@ -127,7 +127,7 @@ export function ErpScreen({ accent = "#3446c4", compact = false }: { accent?: st
             <div key={k} className="rounded-lg border border-ink/8 bg-white p-2.5">
               <p className="truncate text-[9px] text-muted">{k}</p>
               <p className="mt-0.5 text-[13px] font-semibold tracking-tight">{v}</p>
-              <p className="text-[9px]" style={{ color: i === 2 ? "#c4683d" : "#4f7a45" }}>{d}</p>
+              <p className="text-[9px]" style={{ color: i === 2 ? "#0ea5e9" : "#15803d" }}>{d}</p>
             </div>
           ))}
         </div>
@@ -152,7 +152,7 @@ export function ErpScreen({ accent = "#3446c4", compact = false }: { accent?: st
               <span className="w-14 shrink-0 font-mono text-[9px] text-muted">{id}</span>
               <span className="min-w-0 flex-1 truncate">{n}</span>
               <span className="hidden font-medium sm:inline">{amt}</span>
-              <span className={`rounded-full px-2 py-0.5 text-[9px] ${st === "Paid" ? "bg-[#e3ecdf] text-[#4f7a45]" : "bg-[#f6e2d7] text-[#b2582f]"}`}>{st}</span>
+              <span className={`rounded-full px-2 py-0.5 text-[9px] ${st === "Paid" ? "bg-[#dcfce7] text-[#15803d]" : "bg-[#fef3c7] text-[#b45309]"}`}>{st}</span>
             </div>
           ))}
         </div>
@@ -162,11 +162,11 @@ export function ErpScreen({ accent = "#3446c4", compact = false }: { accent?: st
 }
 
 /** SaaS analytics dashboard. */
-export function WebScreen({ accent = "#4f6b4a" }: { accent?: string }) {
+export function WebScreen({ accent = "#2453e6" }: { accent?: string }) {
   const line = [30, 38, 34, 47, 44, 58, 55, 66, 72, 69, 81, 88];
   const d = line.map((p, i) => `${i === 0 ? "M" : "L"}${(i / (line.length - 1)) * 300},${100 - p}`).join(" ");
   return (
-    <div className="bg-[#fbfaf7] p-4 text-ink">
+    <div className="bg-white p-4 text-ink">
       <div className="flex items-center justify-between">
         <p className="flex items-center gap-1.5 text-[12px] font-semibold">
           <span className="h-4 w-4 rounded-full" style={{ background: accent }} /> Ledgerline
