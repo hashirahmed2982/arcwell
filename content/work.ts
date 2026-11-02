@@ -1,6 +1,9 @@
 // Case studies. One object per project, anonymised unless the client approves naming them.
-// IMPORTANT: the three below are PLACEHOLDERS following the brief's template.
+// IMPORTANT: the projects below are PLACEHOLDERS following the brief's template. While
+// site.showSampleContent is on, they are filled with sample details from content/samples.ts.
 // Replace them with real projects and real, measurable results before launch (see TODO.md).
+import { site } from "./site";
+import { sampleCaseStudies, sampleCaseStudyDetails } from "./samples";
 
 export type MockKind = "erp" | "mobile" | "web";
 
@@ -17,6 +20,7 @@ export type CaseStudy = {
   accent: [string, string]; // [card background tint, accent colour]
   // Paths under /public, e.g. "/work/distribution-erp-1.webp". Empty = use placeholder mock.
   images: string[];
+  metrics?: { value: string; label: string }[]; // headline results shown on the detail page
 };
 
 export const work = {
@@ -27,9 +31,11 @@ export const work = {
   heading: "Work",
   intro: "A few of the products we've designed and built. Some client names are kept private under NDA.",
   labels: { challenge: "Challenge", solution: "Solution", result: "Result", tech: "Tech", back: "All work", next: "Next project" },
+  demoHeading: "Try our demo apps",
+  demoIntro: "Products we built to show how we work. Click around — nothing you do here is saved.",
 };
 
-export const caseStudies: CaseStudy[] = [
+const realCaseStudies: CaseStudy[] = [
   {
     slug: "distribution-erp",
     title: "Inventory and sales ERP for a distribution company",
@@ -70,5 +76,9 @@ export const caseStudies: CaseStudy[] = [
     images: [],
   },
 ];
+
+export const caseStudies: CaseStudy[] = site.showSampleContent
+  ? [...realCaseStudies, ...sampleCaseStudies].map((c) => ({ ...c, ...sampleCaseStudyDetails[c.slug] }))
+  : realCaseStudies;
 
 export const getCaseStudy = (slug: string) => caseStudies.find((c) => c.slug === slug);

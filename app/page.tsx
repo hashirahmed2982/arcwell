@@ -11,6 +11,7 @@ import { StatsStrip } from "@/components/home/StatsStrip";
 import { FeaturedWork } from "@/components/home/FeaturedWork";
 import { Testimonials } from "@/components/home/Testimonials";
 import { CTASection } from "@/components/home/CTASection";
+import { ClientLogos } from "@/components/home/ClientLogos";
 
 export const metadata = {
   ...pageMetadata({ ...home.seo, path: "/" }),
@@ -22,15 +23,16 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <ClientLogos />
       <StoryIntro />
       <ServicesBento />
       <CodeToProduct />
+      <StatsStrip />
       <WhyGrid />
       <ProcessTimeline chapter={home.process.chapter} heading={home.process.heading} steps={home.process.steps} />
-      <StatsStrip />
       <FeaturedWork />
-      <TechMarquee heading={home.techHeading} />
       <Testimonials />
+      <TechMarquee heading={home.techHeading} />
       <CTASection {...home.cta} />
     </>
   );

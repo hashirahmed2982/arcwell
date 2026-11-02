@@ -1,5 +1,15 @@
 # TODO before launch
 
+## ⚠️ Turn off sample content
+
+`showSampleContent: true` in `content/site.ts` fills the site with **invented** stats, testimonials,
+client logos, case-study details/metrics, a 4th case study and demo apps (all in `content/samples.ts`),
+and shows a yellow "Preview" badge. Set it to `false` before launch and add real data instead:
+
+- [ ] `realStats`, `realTestimonials`, `realClients`, `realDemoApps` in `content/site.ts`
+- [ ] Real case studies (with `metrics`) in `realCaseStudies` in `content/work.ts`
+- [ ] Set `showSampleContent: false`
+
 ## Must replace (placeholders)
 
 - [ ] **Domain**: `site.url` and `site.email` in `content/site.ts` (currently `arcwell.digital` / `hello@arcwell.digital`)

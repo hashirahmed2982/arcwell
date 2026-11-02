@@ -39,7 +39,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         <div className="container-x">
           <Reveal>
             <Link href="/work" className="eyebrow transition-colors hover:text-ink">← {L.back}</Link>
-            <p className="chapter mt-10">{study.clientType}</p>
+            <div className="mt-10"><p className="chapter">{study.clientType}</p></div>
           </Reveal>
           <WordReveal text={study.title} className="font-display mt-4 max-w-4xl text-balance text-4xl leading-[1.06] md:text-6xl" />
           <Reveal delay={0.3}>
@@ -60,6 +60,19 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           </Reveal>
         </div>
       </section>
+
+      {study.metrics && study.metrics.length > 0 && (
+        <section className="border-b border-line">
+          <dl className="container-x grid gap-y-8 py-12 sm:grid-cols-3">
+            {study.metrics.map((m, i) => (
+              <Reveal key={m.label} delay={i * 0.08} className={i > 0 ? "sm:border-l sm:border-line sm:pl-8" : ""}>
+                <dd className="font-display text-4xl text-accent md:text-5xl">{m.value}</dd>
+                <dt className="mt-2 text-muted">{m.label}</dt>
+              </Reveal>
+            ))}
+          </dl>
+        </section>
+      )}
 
       <section className="py-24 md:py-32">
         <div className="container-x max-w-5xl space-y-14">

@@ -5,6 +5,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ProcessTimeline } from "@/components/home/ProcessTimeline";
 import { CTASection } from "@/components/home/CTASection";
+import { Testimonials } from "@/components/home/Testimonials";
 import { BookCallButton } from "@/components/ui/BookCallButton";
 import { BrowserFrame, ErpScreen, PhoneFrame, MobileAppScreen } from "@/components/ui/Mocks";
 
@@ -74,6 +75,8 @@ export default function ErpPage() {
       </section>
 
       <ProcessTimeline chapter="Process" heading={erp.howHeading} steps={erp.steps} />
+
+      <Testimonials chapter="Client stories" />
 
       <CTASection headline={erp.cta.headline} button={erp.cta.button} />
     </>

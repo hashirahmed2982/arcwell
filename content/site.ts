@@ -1,3 +1,5 @@
+import { sampleClients, sampleDemoApps, sampleStats, sampleTestimonials } from "./samples";
+
 // Global site settings. Edit these values — no component changes needed.
 
 export const site = {
@@ -16,6 +18,10 @@ export const site = {
   location: "Karachi, Pakistan",
   // Custom animated cursor (from the brief). Off by default for a more conventional, professional feel.
   customCursor: false,
+  // PREVIEW ONLY: fills stats, testimonials, client logos, case-study results and demo apps with
+  // invented sample content (content/samples.ts) so you can see the finished design.
+  // Set to false before launch — sections then show only the real data below.
+  showSampleContent: true,
 };
 
 export const nav = [
@@ -46,9 +52,23 @@ export const markets: [string, number, number][] = [
 ];
 export const homeBase: [string, number, number] = ["Karachi", 24.86, 67.0];
 
-// Real numbers only. Leave the array empty to hide the stats strip entirely.
-// Example: { value: 40, suffix: "+", label: "Projects shipped" }
-export const stats: { value: number; suffix?: string; label: string }[] = [];
+// ---- Real data. Sections stay hidden while these are empty (unless sample content is on). ----
 
-// Hidden until real testimonials exist. Add objects to show the block.
-export const testimonials: { quote: string; name: string; role: string }[] = [];
+// Real numbers only. Example: { value: 40, suffix: "+", label: "Projects shipped" }
+const realStats: { value: number; suffix?: string; label: string }[] = [];
+
+// Real, approved quotes only.
+const realTestimonials: { quote: string; name: string; role: string; company?: string }[] = [];
+
+// Client names you have permission to show.
+const realClients: string[] = [];
+
+// Demo apps visitors can try: { title, description, tags, href }
+const realDemoApps: { title: string; description: string; tags: string[]; href: string }[] = [];
+
+const pick = <T,>(real: T[], sample: T[]) => (real.length ? real : site.showSampleContent ? sample : []);
+
+export const stats = pick(realStats, sampleStats);
+export const testimonials = pick(realTestimonials, sampleTestimonials);
+export const clients = pick(realClients, sampleClients);
+export const demoApps = pick(realDemoApps, sampleDemoApps);

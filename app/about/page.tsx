@@ -6,6 +6,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { StoryText } from "@/components/motion/StoryText";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { CTASection } from "@/components/home/CTASection";
+import { StatsStrip } from "@/components/home/StatsStrip";
 
 export const metadata = pageMetadata({ ...about.seo, path: "/about" });
 
@@ -21,6 +22,8 @@ export default function AboutPage() {
           <StoryText text={about.story[0]} className="font-display max-w-4xl text-pretty text-[1.75rem] leading-[1.3] md:text-[2.5rem] md:leading-[1.25]" />
         </div>
       </section>
+
+      <StatsStrip heading="At a glance" />
 
       <section className="bg-paper-2 py-24 md:py-32">
         <div className="container-x">
