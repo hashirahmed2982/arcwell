@@ -10,61 +10,70 @@ import { BrowserFrame, ErpScreen, PhoneFrame, MobileAppScreen } from "@/componen
 
 export const metadata = pageMetadata({ ...erp.seo, path: "/erp" });
 
-const moduleIcons = ["◆", "▣", "◎", "◉", "▤", "▯"];
+// Small line icons, one per module, in the same order as content/erp.ts.
+const icons = [
+  "M4 5h16v14H4zM4 9h16M9 13h6", // accounting
+  "M3 9l9-5 9 5v10H3zM9 19v-6h6v6", // inventory / warehouse
+  "M5 6h14l-1.5 9h-11zM8 20a1 1 0 100-2 1 1 0 000 2zM17 20a1 1 0 100-2 1 1 0 000 2z", // sales
+  "M12 12a4 4 0 100-8 4 4 0 000 8zM4 20c1.5-3.5 4.5-5 8-5s6.5 1.5 8 5", // HR
+  "M5 19V10M12 19V5M19 19v-7", // reports
+  "M8 3h8v18H8zM11 18h2", // mobile
+];
 
 export default function ErpPage() {
   return (
     <>
-      <PageHero eyebrow={erp.hero.eyebrow} title={erp.hero.headline} intro={erp.hero.subtext} highlight={["business"]}>
+      <PageHero eyebrow={erp.hero.eyebrow} title={erp.hero.headline} intro={erp.hero.subtext} highlight={["your", "business"]}>
         <BookCallButton label={erp.hero.button} />
       </PageHero>
 
-      <section className="pb-12">
-        <Reveal className="container-x relative" y={50}>
-          <div className="relative mx-auto max-w-5xl">
-            <BrowserFrame>
-              <ErpScreen />
-            </BrowserFrame>
-            <div className="absolute -bottom-10 -right-2 hidden w-40 md:block lg:-right-12">
-              <PhoneFrame>
-                <MobileAppScreen />
-              </PhoneFrame>
+      <section className="pb-16">
+        <Reveal className="container-x" y={40}>
+          <div className="relative rounded-[2rem] bg-[#e6e3ee] px-5 pb-14 pt-10 md:px-16 md:pb-20 md:pt-16">
+            <div className="relative mx-auto max-w-4xl">
+              <BrowserFrame url="erp.alnoortraders.pk">
+                <ErpScreen />
+              </BrowserFrame>
+              <div className="absolute -bottom-10 -right-3 hidden w-40 md:block lg:-right-16">
+                <PhoneFrame>
+                  <MobileAppScreen />
+                </PhoneFrame>
+              </div>
             </div>
           </div>
         </Reveal>
       </section>
 
-      <section className="py-24 md:py-36">
+      <section className="py-24 md:py-32">
         <div className="container-x">
-          <SectionHeading eyebrow="What's inside" title={erp.modulesHeading} />
-          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <SectionHeading chapter="What's inside" title={erp.modulesHeading} />
+          <ul className="grid border-l border-t border-line sm:grid-cols-2 lg:grid-cols-3">
             {erp.modules.map((m, i) => (
-              <Reveal as="li" key={m} delay={(i % 3) * 0.08} className="glass group flex items-center gap-5 rounded-2xl p-6 transition-colors hover:border-white/20">
-                <span aria-hidden className="bg-arc flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-lg text-white transition-transform duration-500 group-hover:rotate-12">
-                  {moduleIcons[i % moduleIcons.length]}
-                </span>
-                <span className="text-lg font-medium">{m}</span>
+              <Reveal as="li" key={m} delay={(i % 3) * 0.08} className="group border-b border-r border-line p-8 transition-colors duration-500 hover:bg-paper-2">
+                <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden className="text-accent transition-transform duration-500 group-hover:-translate-y-1">
+                  <path d={icons[i % icons.length]} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                <p className="font-display mt-10 text-[1.75rem] leading-tight">{m}</p>
               </Reveal>
             ))}
           </ul>
         </div>
       </section>
 
-      <section className="border-y border-line py-20">
+      <section className="py-20">
         <div className="container-x">
-          <Reveal><p className="eyebrow mb-8">{erp.industriesHeading}</p></Reveal>
-          <ul className="flex flex-wrap gap-x-10 gap-y-4">
+          <Reveal><p className="chapter mb-8">{erp.industriesHeading}</p></Reveal>
+          <ul className="flex flex-wrap gap-3">
             {erp.industries.map((ind, i) => (
-              <Reveal as="li" key={ind} delay={i * 0.06} className="text-2xl font-semibold tracking-tight text-fg/80 md:text-4xl">
+              <Reveal as="li" key={ind} delay={i * 0.06} className="font-display rounded-full border border-ink/20 px-6 py-3 text-2xl transition-colors duration-300 hover:border-ink hover:bg-ink hover:text-paper md:text-3xl">
                 {ind}
-                {i < erp.industries.length - 1 && <span aria-hidden className="text-arc ml-10">·</span>}
               </Reveal>
             ))}
           </ul>
         </div>
       </section>
 
-      <ProcessTimeline eyebrow="Process" heading={erp.howHeading} steps={erp.steps} />
+      <ProcessTimeline chapter="Process" heading={erp.howHeading} steps={erp.steps} />
 
       <CTASection headline={erp.cta.headline} button={erp.cta.button} />
     </>

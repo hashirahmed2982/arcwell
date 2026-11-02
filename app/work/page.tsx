@@ -11,9 +11,9 @@ export const metadata = pageMetadata({ ...work.seo, path: "/work" });
 export default function WorkPage() {
   return (
     <>
-      <PageHero eyebrow={work.heading} title={work.intro} highlight={["designed", "built."]} />
+      <PageHero eyebrow={work.heading} title={work.intro} highlight={["designed", "built"]} />
       <section className="pb-24">
-        <div className="container-x grid gap-x-8 gap-y-16 md:grid-cols-2">
+        <div className="container-x grid gap-x-8 gap-y-20 md:grid-cols-2">
           {caseStudies.map((s, i) => (
             <Reveal key={s.slug} delay={(i % 2) * 0.1}>
               <WorkCard study={s} priority={i < 2} />

@@ -1,6 +1,7 @@
 import { home } from "@/content/home";
 import { pageMetadata } from "@/lib/seo";
 import { Hero } from "@/components/home/Hero";
+import { StoryIntro } from "@/components/home/StoryIntro";
 import { TechMarquee } from "@/components/home/TechMarquee";
 import { ServicesBento } from "@/components/home/ServicesBento";
 import { CodeToProduct } from "@/components/home/CodeToProduct";
@@ -16,17 +17,19 @@ export const metadata = {
   title: { absolute: home.seo.title },
 };
 
+// The home page reads as a short story, in chapters.
 export default function HomePage() {
   return (
     <>
       <Hero />
-      <TechMarquee heading={home.techHeading} />
+      <StoryIntro />
       <ServicesBento />
       <CodeToProduct />
       <WhyGrid />
-      <ProcessTimeline heading={home.process.heading} steps={home.process.steps} />
+      <ProcessTimeline chapter={home.process.chapter} heading={home.process.heading} steps={home.process.steps} />
       <StatsStrip />
       <FeaturedWork />
+      <TechMarquee heading={home.techHeading} />
       <Testimonials />
       <CTASection {...home.cta} />
     </>

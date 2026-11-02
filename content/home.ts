@@ -7,15 +7,22 @@ export const home = {
       "Mobile apps, web platforms and custom ERP systems — designed and built by a senior team that delivers on time.",
   },
   hero: {
-    eyebrow: "Mobile · Web · ERP · Design",
+    eyebrow: "A software studio in Karachi, Pakistan",
     headline: "Software built around your business.",
     subtext:
       "Mobile apps, web platforms and custom ERP systems — designed and built by a senior team that delivers on time.",
     primaryCta: "Book a free call",
     secondaryCta: { label: "See our work", href: "/work" },
   },
+  // Narrative chapter shown after the hero. Words light up as the visitor scrolls.
+  story: {
+    chapter: "Chapter one — the problem",
+    text: "It usually starts with a spreadsheet. Then a WhatsApp group, a notebook by the till and three apps that don't talk to each other. Somewhere along the way, the tools stopped fitting the business.",
+    turn: "That's where we come in.",
+  },
   services: {
-    heading: "What we build",
+    chapter: "Chapter two — what we build",
+    heading: "Four things we do, *properly.*", // wrap words in *asterisks* for the italic accent
     items: [
       {
         key: "mobile" as ServiceKey,
@@ -41,7 +48,8 @@ export const home = {
     ],
   },
   why: {
-    heading: "Why Arcwell Digital",
+    chapter: "Chapter four — why us",
+    heading: "Why teams *choose* Arcwell Digital",
     items: [
       { title: "Experienced team", description: "We've shipped large-scale apps used by thousands of businesses." },
       { title: "Built for you", description: "Custom software, not one-size-fits-all." },
@@ -55,7 +63,8 @@ export const home = {
     ],
   },
   process: {
-    heading: "How we work",
+    chapter: "Chapter five — how we work",
+    heading: "How we *work*",
     steps: [
       { title: "Discovery", description: "We learn your business, users and goals." },
       { title: "Scope and estimate", description: "A clear plan with timeline and pricing." },
@@ -65,15 +74,16 @@ export const home = {
     ],
   },
   codeToProduct: {
-    eyebrow: "From code to product",
-    heading: "We don't just design it. We build it.",
+    chapter: "Chapter three — from code to product",
+    heading: "We don't just design it. We *build* it.",
     subtext: "Every line on the left becomes something your team can use on the right.",
   },
   featuredWork: {
-    heading: "Featured work",
+    chapter: "Chapter six — selected work",
+    heading: "Featured *work*",
     linkLabel: "All case studies",
   },
-  techHeading: "Our stack",
+  techHeading: "Built with tools we know inside out",
   cta: {
     headline: "Have a project in mind?",
     subtext: "Tell us what you're building. We'll reply within 24 hours.",

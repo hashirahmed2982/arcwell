@@ -5,6 +5,7 @@ import { ScrollTrigger } from "@/lib/gsap";
 import { home } from "@/content/home";
 import { Highlighted } from "./PhoneMockup";
 import { BrowserFrame } from "@/components/ui/Mocks";
+import { Emphasis } from "@/components/ui/SectionHeading";
 
 const code = `export default function Dashboard() {
   const sales = useSales({ range: "30d" });
@@ -13,20 +14,21 @@ const code = `export default function Dashboard() {
   return (
     <Layout sidebar={<Nav modules={modules} />}>
       <KpiRow>
-        <Kpi label="Revenue" value={sales.total} />
-        <Kpi label="Orders" value={sales.count} />
+        <Kpi label="Sales this month" value={sales.total} />
+        <Kpi label="Open orders" value={sales.open} />
         <Kpi label="Low stock" value={stock.low} />
       </KpiRow>
-      <SalesChart data={sales.daily} />
-      <OrdersTable rows={sales.latest} />
+      <SalesChart data={sales.monthly} />
+      <InvoiceList rows={sales.latest} />
     </Layout>
   );
 }`;
 
 // Fraction of the code that must be typed before each UI piece appears.
 const at = { layout: 0.22, kpi1: 0.45, kpi2: 0.53, kpi3: 0.61, chart: 0.74, table: 0.88 };
+const bars = [42, 55, 48, 62, 58, 71, 66, 78, 74, 86, 81, 92];
 
-/** Signature section: code types on the left while the matching ERP screen builds itself on the right. Driven by scroll. */
+/** Chapter three: code types on the left while the matching ERP screen builds itself on the right. Driven by scroll. */
 export function CodeToProduct() {
   const { codeToProduct: c } = home;
   const section = useRef<HTMLElement>(null);
@@ -60,81 +62,88 @@ export function CodeToProduct() {
   const shown = code.slice(0, Math.floor(p * code.length));
   const on = (k: keyof typeof at) => p >= at[k];
   const piece = (k: keyof typeof at) =>
-    `transition-all duration-500 ease-out ${on(k) ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-3 scale-[0.97]"}`;
+    `transition-all duration-500 ease-out ${on(k) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`;
 
   return (
     <section ref={section} className="relative" aria-labelledby="c2p-heading">
-      <div ref={pin} className="flex min-h-screen items-center py-24">
-        <div className="container-x">
-          <div className="mb-12 max-w-3xl">
-            <p className="eyebrow mb-4">{c.eyebrow}</p>
-            <h2 id="c2p-heading" className="text-balance text-4xl font-semibold tracking-tight md:text-6xl">{c.heading}</h2>
-            <p className="mt-5 text-lg text-muted">{c.subtext}</p>
-          </div>
-
-          <div className="grid gap-6 lg:grid-cols-2" aria-hidden>
-            {/* Editor */}
-            <div className="glass overflow-hidden rounded-2xl">
-              <div className="flex items-center justify-between border-b border-white/8 px-4 py-3">
-                <span className="font-mono text-xs text-muted">dashboard.tsx</span>
-                <span className="font-mono text-xs text-muted">{Math.round(p * 100)}%</span>
+      <div ref={pin} className="flex min-h-screen items-center py-6">
+        <div className="mx-auto w-full max-w-[88rem] px-3 md:px-5">
+          <div className="rounded-[2rem] bg-ink-2 px-5 py-16 text-paper md:px-14 md:py-20">
+            <div className="mb-12 grid gap-6 md:grid-cols-[1fr_auto] md:items-end">
+              <div className="max-w-3xl">
+                <p className="chapter mb-5 !text-[#b5ab9c]">{c.chapter}</p>
+                <h2 id="c2p-heading" className="font-display text-balance text-5xl leading-[1.02] md:text-7xl [&_em]:!text-[#e59a73]">
+                  <Emphasis text={c.heading} />
+                </h2>
               </div>
-              <pre className="h-[340px] overflow-hidden whitespace-pre-wrap p-5 font-mono text-[12px] leading-[1.7] md:h-[380px] md:text-[13px]">
-                <Highlighted text={shown} />
-                <span className="ml-px inline-block h-4 w-2 animate-pulse bg-arc-1 align-middle" />
-              </pre>
+              <p className="max-w-xs text-[#b5ab9c]">{c.subtext}</p>
             </div>
 
-            {/* Product */}
-            <BrowserFrame className="flex flex-col">
-              <div className={`flex h-[340px] md:h-[380px] ${piece("layout")}`}>
-                <div className="hidden w-32 shrink-0 flex-col gap-3 border-r border-white/8 p-4 sm:flex">
-                  <div className="bg-arc mb-2 h-6 w-6 rounded-md" />
-                  {["Dashboard", "Sales", "Inventory", "HR", "Reports"].map((m, i) => (
-                    <span key={m} className={`text-xs ${i === 0 ? "text-fg" : "text-muted"}`}>{m}</span>
-                  ))}
+            <div className="grid gap-5 lg:grid-cols-2" aria-hidden>
+              {/* Editor */}
+              <div className="overflow-hidden rounded-xl border border-white/10 bg-[#1b1916]">
+                <div className="flex items-center justify-between border-b border-white/10 px-4 py-2.5 text-[11px] text-[#b5ab9c]">
+                  <span className="font-mono">dashboard.tsx</span>
+                  <span className="flex items-center gap-2">
+                    <span className="h-1 w-20 overflow-hidden rounded-full bg-white/10">
+                      <span className="block h-full bg-[#e59a73]" style={{ width: `${p * 100}%` }} />
+                    </span>
+                  </span>
                 </div>
-                <div className="flex flex-1 flex-col gap-3 p-4">
-                  <div className="grid grid-cols-3 gap-2">
-                    {([["kpi1", "Revenue", "$48.2k"], ["kpi2", "Orders", "1,284"], ["kpi3", "Low stock", "12"]] as const).map(([k, label, val]) => (
-                      <div key={k} className={`rounded-xl bg-white/[0.05] p-3 ${piece(k)}`}>
-                        <p className="font-mono text-[9px] uppercase tracking-wider text-muted">{label}</p>
-                        <p className="mt-1 text-lg font-semibold">{val}</p>
-                      </div>
-                    ))}
-                  </div>
-                  <div className={`flex-1 rounded-xl bg-white/[0.04] p-3 ${piece("chart")}`}>
-                    <svg viewBox="0 0 300 100" preserveAspectRatio="none" className="h-full w-full">
-                      <defs>
-                        <linearGradient id="c2p-line" x1="0" x2="1">
-                          <stop offset="0" stopColor="#3d7bff" />
-                          <stop offset="1" stopColor="#b05cff" />
-                        </linearGradient>
-                      </defs>
-                      <path
-                        d="M0,80 L40,70 L80,74 L120,52 L160,58 L200,36 L240,42 L300,14"
-                        fill="none"
-                        stroke="url(#c2p-line)"
-                        strokeWidth="3"
-                        vectorEffect="non-scaling-stroke"
-                        pathLength={1}
-                        strokeDasharray="1"
-                        strokeDashoffset={on("chart") ? 0 : 1}
-                        style={{ transition: "stroke-dashoffset 1.2s cubic-bezier(.22,1,.36,1)" }}
-                      />
-                    </svg>
-                  </div>
-                  <div className={`space-y-1.5 ${piece("table")}`}>
-                    {[["#1042", "PAID"], ["#1041", "SHIPPED"]].map(([id, st]) => (
-                      <div key={id} className="flex items-center justify-between rounded-lg bg-white/[0.03] px-3 py-2 text-xs">
-                        <span className="font-mono text-muted">{id}</span>
-                        <span className="rounded-full bg-arc-1/15 px-2 py-0.5 font-mono text-[10px] text-arc-1">{st}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                <pre className="h-[340px] overflow-hidden whitespace-pre-wrap p-5 font-mono text-[12px] leading-[1.75] md:h-[380px] md:text-[13px]">
+                  <Highlighted text={shown} dark />
+                  <span className="ml-px inline-block h-4 w-[7px] animate-pulse bg-[#e59a73] align-middle" />
+                </pre>
               </div>
-            </BrowserFrame>
+
+              {/* Product */}
+              <BrowserFrame url="erp.alnoortraders.pk" className="!shadow-none">
+                <div className={`flex h-[340px] bg-[#fbfaf7] text-ink md:h-[380px] ${piece("layout")}`}>
+                  <aside className="hidden w-36 shrink-0 flex-col gap-0.5 border-r border-ink/8 bg-[#f6f2eb] p-3 text-[11px] sm:flex">
+                    <p className="mb-3 flex items-center gap-1.5 font-semibold"><span className="h-4 w-4 rounded bg-accent" /> Al-Noor Traders</p>
+                    {["Dashboard", "Sales", "Inventory", "Purchasing", "HR & Payroll", "Reports"].map((m, i) => (
+                      <span key={m} className={`rounded-md px-2 py-1.5 ${i === 0 ? "bg-white font-medium shadow-[0_1px_2px_rgba(0,0,0,0.06)]" : "text-muted"}`}>{m}</span>
+                    ))}
+                  </aside>
+                  <div className="flex min-w-0 flex-1 flex-col gap-3 p-4">
+                    <div className="grid grid-cols-3 gap-2">
+                      {([["kpi1", "Sales this month", "Rs 4.82M"], ["kpi2", "Open orders", "138"], ["kpi3", "Low stock", "9 items"]] as const).map(([k, label, val]) => (
+                        <div key={k} className={`rounded-lg border border-ink/8 bg-white p-3 ${piece(k)}`}>
+                          <p className="truncate text-[9.5px] text-muted">{label}</p>
+                          <p className="mt-0.5 text-[15px] font-semibold tracking-tight">{val}</p>
+                        </div>
+                      ))}
+                    </div>
+                    <div className={`flex flex-1 flex-col rounded-lg border border-ink/8 bg-white p-3 ${piece("chart")}`}>
+                      <p className="mb-2 text-[10px] font-medium">Monthly sales</p>
+                      <div className="flex flex-1 items-end gap-1.5">
+                        {bars.map((h, i) => (
+                          <div
+                            key={i}
+                            className="flex-1 origin-bottom rounded-t-[3px] transition-transform duration-700"
+                            style={{
+                              height: `${h}%`,
+                              background: i === bars.length - 1 ? "#3446c4" : "#3446c433",
+                              transform: `scaleY(${on("chart") ? 1 : 0})`,
+                              transitionDelay: `${i * 40}ms`,
+                            }}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                    <div className={`rounded-lg border border-ink/8 bg-white text-[10.5px] ${piece("table")}`}>
+                      {[["INV-2041", "Hassan Medical Store", "Paid"], ["INV-2040", "City Mart, Gulshan", "Due"]].map(([id, n, st]) => (
+                        <div key={id} className="flex items-center gap-3 border-b border-ink/6 px-3 py-2 last:border-0">
+                          <span className="font-mono text-[9.5px] text-muted">{id}</span>
+                          <span className="flex-1 truncate">{n}</span>
+                          <span className={`rounded-full px-2 py-0.5 text-[9.5px] ${st === "Paid" ? "bg-[#e3ecdf] text-[#4f7a45]" : "bg-[#f6e2d7] text-[#b2582f]"}`}>{st}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </BrowserFrame>
+            </div>
           </div>
         </div>
       </div>

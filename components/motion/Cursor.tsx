@@ -42,16 +42,16 @@ export function Cursor() {
   return (
     <div aria-hidden className="pointer-events-none fixed inset-0 z-[70]" style={{ opacity: visible ? 1 : 0 }}>
       <motion.div
-        className="absolute left-0 top-0 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white"
+        className="absolute left-0 top-0 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-ink"
         style={{ x, y }}
       />
       <motion.div
-        className="absolute left-0 top-0 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/40 mix-blend-difference"
+        className="absolute left-0 top-0 -translate-x-1/2 -translate-y-1/2 rounded-full border border-ink/30"
         style={{ x: rx, y: ry }}
         animate={{
           width: hovering ? 56 : 30,
           height: hovering ? 56 : 30,
-          backgroundColor: hovering ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0)",
+          backgroundColor: hovering ? "rgba(52,70,196,0.12)" : "rgba(52,70,196,0)", borderColor: hovering ? "rgba(52,70,196,0.5)" : "rgba(29,27,24,0.3)",
         }}
         transition={{ type: "spring", stiffness: 300, damping: 25 }}
       />

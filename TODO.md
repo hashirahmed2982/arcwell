@@ -19,6 +19,11 @@ The three case studies are **placeholders** following the brief's template. Thei
 - [ ] `saas-dashboard` — real title, challenge, solution, result
 - [ ] Optional 4th case study and 1–2 demo apps
 
+## Illustrative screens
+
+The device mock-ups (ERP for "Al-Noor Traders", a clinic booking app, the "Ledgerline" dashboard) use invented
+sample names and figures so they look real. Swap them for real anonymised screenshots as below.
+
 ## Placeholder images (screenshots needed)
 
 Each case study currently shows an HTML-drawn mock screen. Add 2–3 screenshots per project

@@ -5,6 +5,16 @@ Company site for **Arcwell Digital** — *Software built around your business.*
 Next.js (App Router) + TypeScript + Tailwind CSS v4, exported as a static site (`out/`) and deployable to Vercel.
 Animation: Framer Motion (UI + page transitions), GSAP + ScrollTrigger (scroll storytelling), Lenis (smooth scroll), React Three Fiber / Three.js (3D hero).
 
+## Design
+
+Warm and editorial rather than "tech": paper background (`#f5f1ea`), ink text, a single cobalt accent and a clay
+highlight, set in Instrument Serif (headlines) and Geist (body). The home page reads as a short story in chapters —
+the problem, what we build, code to product, why us, how we work, selected work — ending on "the next chapter is yours".
+The 3D hero is a matte ceramic arch (the "arc" in Arcwell) with the phone standing in its opening.
+
+Colours and fonts live in `app/globals.css` (`@theme`). In headings from `/content`, wrap words in `*asterisks*`
+to set them in the italic accent.
+
 ## Run it
 
 ```bash

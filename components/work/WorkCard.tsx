@@ -1,36 +1,31 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "framer-motion";
 import type { CaseStudy } from "@/content/work";
 import { CaseMock } from "@/components/ui/Mocks";
 
-/** Case study card: device frame that tilts in 3D on hover, then expands to fill the screen on click. */
+/** Case study card: the device tilts gently in 3D on hover, then the card expands to fill the screen on click. */
 export function WorkCard({ study, priority = false }: { study: CaseStudy; priority?: boolean }) {
   const router = useRouter();
   const reduce = useReducedMotion();
-  const card = useRef<HTMLAnchorElement>(null);
   const [expand, setExpand] = useState<DOMRect | null>(null);
 
   const mx = useMotionValue(0.5);
   const my = useMotionValue(0.5);
-  const rotX = useSpring(useTransform(my, [0, 1], [10, -10]), { stiffness: 200, damping: 20 });
-  const rotY = useSpring(useTransform(mx, [0, 1], [-12, 12]), { stiffness: 200, damping: 20 });
-  const glareX = useTransform(mx, [0, 1], ["0%", "100%"]);
-  const glareY = useTransform(my, [0, 1], ["0%", "100%"]);
-  const glare = useTransform([glareX, glareY], ([x, y]) => `radial-gradient(circle at ${x} ${y}, rgba(255,255,255,0.12), transparent 40%)`);
+  const rotX = useSpring(useTransform(my, [0, 1], [6, -6]), { stiffness: 150, damping: 20 });
+  const rotY = useSpring(useTransform(mx, [0, 1], [-8, 8]), { stiffness: 150, damping: 20 });
 
   const href = `/work/${study.slug}`;
-  const [a, b] = study.accent;
+  const [tint, accent] = study.accent;
 
   return (
     <>
       <a
-        ref={card}
         href={href}
-        className="group block [perspective:1200px]"
+        className="group block"
         onPointerMove={(e) => {
           if (e.pointerType !== "mouse") return;
           const r = e.currentTarget.getBoundingClientRect();
@@ -45,50 +40,42 @@ export function WorkCard({ study, priority = false }: { study: CaseStudy; priori
         onClick={(e) => {
           if (reduce || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
           e.preventDefault();
-          setExpand(e.currentTarget.getBoundingClientRect());
-          window.setTimeout(() => router.push(href), 520);
+          setExpand(e.currentTarget.firstElementChild!.getBoundingClientRect());
+          window.setTimeout(() => router.push(href), 560);
         }}
       >
-        <motion.div
-          style={reduce ? undefined : { rotateX: rotX, rotateY: rotY, transformStyle: "preserve-3d" }}
-          className="relative overflow-hidden rounded-3xl border border-white/10 p-6 md:p-10"
-        >
-          <div aria-hidden className="absolute inset-0 opacity-25 transition-opacity duration-500 group-hover:opacity-40" style={{ background: `radial-gradient(circle at 30% 0%, ${a}, transparent 60%), radial-gradient(circle at 100% 100%, ${b}, transparent 55%)` }} />
+        <div className="relative overflow-hidden rounded-[1.75rem] px-6 py-10 [perspective:1200px] md:px-12 md:py-14" style={{ background: tint }}>
           <motion.div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-            style={{ background: glare }}
-          />
-          <div className="relative flex aspect-[16/11] items-center justify-center" style={{ transform: "translateZ(50px)" }}>
-            <div className="w-full transition-transform duration-700 ease-out group-hover:scale-[1.03]">
+            style={reduce ? undefined : { rotateX: rotX, rotateY: rotY, transformStyle: "preserve-3d" }}
+            className="relative flex aspect-[16/11] items-center justify-center"
+          >
+            <div className="w-full transition-transform duration-700 ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.035]">
               {study.images[0] ? (
                 <Image src={study.images[0]} alt={`${study.title} screenshot`} width={1600} height={1100} priority={priority} sizes="(min-width: 768px) 50vw, 100vw" className="h-auto w-full rounded-xl" />
               ) : (
-                <CaseMock kind={study.mock} accent={study.accent} />
+                <CaseMock kind={study.mock} accent={accent} />
               )}
             </div>
-          </div>
-        </motion.div>
-        <div className="mt-5 flex items-start justify-between gap-6 px-1">
+          </motion.div>
+        </div>
+        <div className="mt-6 flex items-start justify-between gap-6">
           <div>
             <p className="eyebrow">{study.clientType}</p>
-            <h3 className="mt-2 text-xl font-semibold tracking-tight md:text-2xl">{study.title}</h3>
-            <p className="mt-1 text-muted">{study.summary}</p>
+            <h3 className="font-display mt-2 text-3xl leading-tight md:text-4xl">{study.title}</h3>
+            <p className="mt-2 text-muted">{study.summary}</p>
           </div>
-          <span aria-hidden className="mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/15 transition-all duration-300 group-hover:rotate-[-45deg] group-hover:bg-white group-hover:text-ink">
-            →
-          </span>
+          <span aria-hidden className="mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-ink/15 transition-all duration-300 group-hover:rotate-[-45deg] group-hover:border-ink group-hover:bg-ink group-hover:text-paper">→</span>
         </div>
       </a>
 
       {expand && (
         <motion.div
           aria-hidden
-          className="fixed z-[65] rounded-3xl"
-          style={{ background: `linear-gradient(135deg, ${a}, ${b})` }}
-          initial={{ top: expand.top, left: expand.left, width: expand.width, height: expand.height, opacity: 0.6 }}
-          animate={{ top: 0, left: 0, width: "100vw", height: "100vh", borderRadius: 0, opacity: 1 }}
-          transition={{ duration: 0.55, ease: [0.76, 0, 0.24, 1] }}
+          className="fixed z-[65]"
+          style={{ background: tint }}
+          initial={{ top: expand.top, left: expand.left, width: expand.width, height: expand.height, borderRadius: 28 }}
+          animate={{ top: 0, left: 0, width: "100vw", height: "100vh", borderRadius: 0 }}
+          transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
         />
       )}
     </>

@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 
-/** Reveals a headline word by word. `highlight` words get the accent gradient. */
+/** Reveals a headline word by word. `highlight` words are set in the italic accent (<em>). */
 export function WordReveal({
   text,
   highlight = [],
@@ -24,14 +24,14 @@ export function WordReveal({
       {words.map((w, i) => {
         const hl = highlight.includes(w.replace(/[.,—]/g, ""));
         return (
-          <span key={i} aria-hidden className="inline-block overflow-hidden pb-[0.12em] align-bottom">
+          <span key={i} aria-hidden className="inline-block overflow-hidden pb-[0.14em] pr-[0.04em] align-bottom">
             <motion.span
-              className={`inline-block ${hl ? "text-arc" : ""}`}
+              className="inline-block"
               initial={reduce ? false : { y: "110%", opacity: 0 }}
               animate={{ y: "0%", opacity: 1 }}
               transition={{ duration: 0.8, delay: delay + i * 0.08, ease: [0.22, 1, 0.36, 1] }}
             >
-              {w}
+              {hl ? <em>{w}</em> : w}
             </motion.span>
             {i < words.length - 1 && " "}
           </span>

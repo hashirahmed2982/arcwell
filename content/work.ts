@@ -14,7 +14,7 @@ export type CaseStudy = {
   result: string;
   tech: string[];
   mock: MockKind; // which placeholder screen to draw until real screenshots exist
-  accent: [string, string];
+  accent: [string, string]; // [card background tint, accent colour]
   // Paths under /public, e.g. "/work/distribution-erp-1.webp". Empty = use placeholder mock.
   images: string[];
 };
@@ -40,7 +40,7 @@ export const caseStudies: CaseStudy[] = [
     result: "Placeholder — add a real, measurable outcome (time saved, users, rating, launch date).",
     tech: ["Flutter", "Next.js", "Node.js"],
     mock: "erp",
-    accent: ["#3b82f6", "#8b5cf6"],
+    accent: ["#e6dccb", "#3446c4"],
     images: [],
   },
   {
@@ -53,7 +53,7 @@ export const caseStudies: CaseStudy[] = [
     result: "Placeholder — add a real, measurable outcome (time saved, users, rating, launch date).",
     tech: ["Flutter", "Firebase"],
     mock: "mobile",
-    accent: ["#6366f1", "#d946ef"],
+    accent: ["#ecd8cb", "#c4683d"],
     images: [],
   },
   {
@@ -66,7 +66,7 @@ export const caseStudies: CaseStudy[] = [
     result: "Placeholder — add a real, measurable outcome (time saved, users, rating, launch date).",
     tech: ["React", "Next.js", "Node.js"],
     mock: "web",
-    accent: ["#0ea5e9", "#7c3aed"],
+    accent: ["#dce3d6", "#4f6b4a"],
     images: [],
   },
 ];

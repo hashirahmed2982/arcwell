@@ -43,11 +43,10 @@ export function PhoneMockup() {
   }, [chars, phase, reduce]);
 
   return (
-    <div className="relative mx-auto w-[240px] md:w-[270px]" aria-hidden>
-      <div className="absolute -inset-10 -z-10 rounded-full bg-arc-2/30 blur-[70px]" />
+    <div className="relative mx-auto w-full" aria-hidden>
       <motion.div
-        animate={reduce ? undefined : { y: [0, -10, 0], rotate: [-2, 1, -2] }}
-        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+        animate={reduce ? undefined : { y: [0, -6, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       >
         <PhoneFrame>
           <AnimatePresence mode="wait">
@@ -58,10 +57,10 @@ export function PhoneMockup() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0, scale: 0.92, filter: "blur(8px)" }}
                 transition={{ duration: 0.45 }}
-                className="h-full overflow-hidden whitespace-pre-wrap p-4 pt-10 font-mono text-[9.5px] leading-[1.55] text-muted"
+                className="h-full overflow-hidden whitespace-pre-wrap bg-[#fbfaf7] px-4 pt-6 font-mono text-[9px] leading-[1.6] text-muted"
               >
                 <Highlighted text={code.slice(0, chars)} />
-                <span className="ml-px inline-block h-3 w-1.5 animate-pulse bg-arc-1 align-middle" />
+                <span className="ml-px inline-block h-3 w-1.5 animate-pulse bg-accent align-middle" />
               </motion.pre>
             ) : (
               <motion.div
@@ -83,19 +82,19 @@ export function PhoneMockup() {
 }
 
 /** Tiny syntax highlighter for the mock editor. */
-export function Highlighted({ text }: { text: string }) {
+export function Highlighted({ text, dark = false }: { text: string; dark?: boolean }) {
   const parts = text.split(/(\b(?:class|extends|return|const|function|export|import|from|await|async|new)\b|@\w+|\b[A-Z][A-Za-z]+\b|\d+|"[^"]*"|'[^']*')/g);
   return (
     <>
       {parts.map((p, i) => {
         if (!p) return null;
         let cls = "";
-        if (/^(class|extends|return|const|function|export|import|from|await|async|new)$/.test(p)) cls = "text-[#c792ff]";
-        else if (/^@/.test(p)) cls = "text-[#ffcb6b]";
-        else if (/^[A-Z]/.test(p)) cls = "text-[#82aaff]";
-        else if (/^\d+$/.test(p)) cls = "text-[#f78c6c]";
-        else if (/^["']/.test(p)) cls = "text-[#c3e88d]";
-        return cls ? <span key={i} className={cls}>{p}</span> : <span key={i} className="text-fg/80">{p}</span>;
+        if (/^(class|extends|return|const|function|export|import|from|await|async|new)$/.test(p)) cls = dark ? "text-[#e59a73]" : "text-[#b2582f]";
+        else if (/^@/.test(p)) cls = dark ? "text-[#d9b56a]" : "text-[#9a7424]";
+        else if (/^[A-Z]/.test(p)) cls = dark ? "text-[#9fb0ff]" : "text-[#3446c4]";
+        else if (/^\d+$/.test(p)) cls = dark ? "text-[#a9c99a]" : "text-[#4f7a45]";
+        else if (/^["']/.test(p)) cls = dark ? "text-[#a9c99a]" : "text-[#4f7a45]";
+        return cls ? <span key={i} className={cls}>{p}</span> : <span key={i} className={dark ? "text-[#e9e2d6]/85" : "text-ink/75"}>{p}</span>;
       })}
     </>
   );

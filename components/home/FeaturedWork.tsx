@@ -11,17 +11,17 @@ export function FeaturedWork() {
   return (
     <section className="relative py-24 md:py-36">
       <div className="container-x">
-        <div className="flex flex-wrap items-end justify-between gap-6">
-          <SectionHeading eyebrow="Work" title={home.featuredWork.heading} />
-          <Reveal className="mb-12 md:mb-16">
-            <Link href="/work" className="text-muted underline-offset-4 transition-colors hover:text-fg hover:underline">
+        <div className="flex flex-wrap items-end justify-between gap-x-6">
+          <SectionHeading chapter={home.featuredWork.chapter} title={home.featuredWork.heading} />
+          <Reveal className="mb-14 md:mb-20">
+            <Link href="/work" className="border-b border-ink/30 pb-1 transition-colors hover:border-accent hover:text-accent">
               {home.featuredWork.linkLabel} →
             </Link>
           </Reveal>
         </div>
-        <div className="grid gap-x-8 gap-y-16 md:grid-cols-2">
+        <div className="grid gap-x-8 gap-y-20 md:grid-cols-2">
           {items.map((s, i) => (
-            <Reveal key={s.slug} delay={(i % 2) * 0.1} className={i === 0 ? "md:col-span-2 md:mx-auto md:w-3/4" : ""}>
+            <Reveal key={s.slug} delay={(i % 2) * 0.1} className={i === 0 ? "md:col-span-2" : ""}>
               <WorkCard study={s} />
             </Reveal>
           ))}

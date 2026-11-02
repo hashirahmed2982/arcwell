@@ -1,173 +1,87 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { useEffect, useRef, useState } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
-const vertex = /* glsl */ `
-  uniform float uTime;
-  uniform vec2 uMouse;
-  uniform float uSize;
-  attribute float aSeed;
-  varying float vMix;
-  varying float vGlow;
+const CERAMIC = "#ece3d4";
+const CLAY = "#c4683d";
 
-  void main() {
-    vec3 p = position;
-    float wave = sin(p.x * 0.55 + uTime * 0.6) * 0.35 + cos(p.z * 0.7 + uTime * 0.45) * 0.3;
-    p.y += wave;
-
-    // Lift particles near the pointer (pointer mapped onto the plane).
-    vec2 m = uMouse * vec2(7.0, 4.0);
-    float d = distance(p.xz, vec2(m.x, -m.y));
-    float bump = smoothstep(2.8, 0.0, d);
-    p.y += bump * 1.1;
-
-    vec4 mv = modelViewMatrix * vec4(p, 1.0);
-    gl_Position = projectionMatrix * mv;
-    gl_PointSize = uSize * (0.6 + aSeed * 0.8 + bump * 1.5) * (8.0 / -mv.z);
-    vMix = (position.x + 9.0) / 18.0;
-    vGlow = bump;
-  }
-`;
-
-const fragment = /* glsl */ `
-  uniform vec3 uColorA;
-  uniform vec3 uColorB;
-  varying float vMix;
-  varying float vGlow;
-
-  void main() {
-    float d = length(gl_PointCoord - 0.5);
-    if (d > 0.5) discard;
-    float alpha = smoothstep(0.5, 0.0, d);
-    vec3 col = mix(uColorA, uColorB, clamp(vMix, 0.0, 1.0));
-    col = mix(col, vec3(1.0), vGlow * 0.5);
-    gl_FragColor = vec4(col, alpha * (0.55 + vGlow * 0.45));
-  }
-`;
-
-function ParticleField({ count }: { count: number }) {
-  const material = useRef<THREE.ShaderMaterial>(null);
+/**
+ * A matte ceramic arch — the "arc" in Arcwell — standing on a paper floor in soft daylight.
+ * It turns gently toward the pointer; a small clay ball (the dot in the logo) rests inside it.
+ */
+function Arch() {
   const group = useRef<THREE.Group>(null);
-  const mouse = useRef(new THREE.Vector2(0, 0));
-  const target = useRef(new THREE.Vector2(0, 0));
-
-  const { positions, seeds } = useMemo(() => {
-    const side = Math.round(Math.sqrt(count));
-    const positions = new Float32Array(side * side * 3);
-    const seeds = new Float32Array(side * side);
-    let i = 0;
-    for (let x = 0; x < side; x++) {
-      for (let z = 0; z < side; z++) {
-        positions[i * 3] = (x / (side - 1) - 0.5) * 18 + (Math.random() - 0.5) * 0.15;
-        positions[i * 3 + 1] = 0;
-        positions[i * 3 + 2] = (z / (side - 1) - 0.5) * 12 + (Math.random() - 0.5) * 0.15;
-        seeds[i] = Math.random();
-        i++;
-      }
-    }
-    return { positions, seeds };
-  }, [count]);
-
-  const uniforms = useMemo(
-    () => ({
-      uTime: { value: 0 },
-      uMouse: { value: new THREE.Vector2() },
-      uSize: { value: 3.2 },
-      uColorA: { value: new THREE.Color("#3d7bff") },
-      uColorB: { value: new THREE.Color("#b05cff") },
-    }),
-    [],
-  );
+  const ball = useRef<THREE.Mesh>(null);
+  const target = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
     const onMove = (e: PointerEvent) => {
-      target.current.set((e.clientX / window.innerWidth) * 2 - 1, (e.clientY / window.innerHeight) * 2 - 1);
+      target.current.x = (e.clientX / window.innerWidth) * 2 - 1;
+      target.current.y = (e.clientY / window.innerHeight) * 2 - 1;
     };
     window.addEventListener("pointermove", onMove, { passive: true });
     return () => window.removeEventListener("pointermove", onMove);
   }, []);
 
-  useFrame((state, delta) => {
-    mouse.current.lerp(target.current, Math.min(1, delta * 4));
-    if (material.current) {
-      material.current.uniforms.uTime.value = state.clock.elapsedTime;
-      material.current.uniforms.uMouse.value.copy(mouse.current);
-    }
+  useFrame((state) => {
+    const t = state.clock.elapsedTime;
     if (group.current) {
-      group.current.rotation.x = THREE.MathUtils.lerp(group.current.rotation.x, 0.42 + mouse.current.y * 0.08, 0.05);
-      group.current.rotation.y = THREE.MathUtils.lerp(group.current.rotation.y, mouse.current.x * 0.15, 0.05);
+      const ry = -0.18 + target.current.x * 0.22 + Math.sin(t * 0.25) * 0.05;
+      group.current.rotation.y = THREE.MathUtils.lerp(group.current.rotation.y, ry, 0.04);
+      group.current.rotation.x = THREE.MathUtils.lerp(group.current.rotation.x, target.current.y * 0.04, 0.04);
+    }
+    if (ball.current) {
+      ball.current.position.x = 1.45 + Math.sin(t * 0.6) * 0.15;
+      ball.current.rotation.z = -Math.sin(t * 0.6) * 0.5;
     }
   });
 
+  const material = <meshStandardMaterial color={CERAMIC} roughness={0.82} metalness={0} />;
+
   return (
-    <group ref={group} position={[0, -1.6, 0]}>
-      <points>
-        <bufferGeometry>
-          <bufferAttribute attach="attributes-position" args={[positions, 3]} />
-          <bufferAttribute attach="attributes-aSeed" args={[seeds, 1]} />
-        </bufferGeometry>
-        <shaderMaterial
-          ref={material}
-          vertexShader={vertex}
-          fragmentShader={fragment}
-          uniforms={uniforms}
-          transparent
-          depthWrite={false}
-          blending={THREE.AdditiveBlending}
-        />
-      </points>
+    <group ref={group} position={[-0.25, -0.1, 0]}>
+      {/* Curved top of the arch */}
+      <mesh castShadow receiveShadow position={[0, 0, 0]}>
+        <torusGeometry args={[2, 0.42, 48, 160, Math.PI]} />
+        {material}
+      </mesh>
+      {/* Pillars */}
+      {[-2, 2].map((x) => (
+        <mesh key={x} castShadow receiveShadow position={[x, -1.3, 0]}>
+          <cylinderGeometry args={[0.42, 0.42, 2.6, 48]} />
+          {material}
+        </mesh>
+      ))}
+      {/* Plinths */}
+      {[-2, 2].map((x) => (
+        <mesh key={`p${x}`} castShadow receiveShadow position={[x, -2.52, 0]}>
+          <boxGeometry args={[1.15, 0.16, 1.15]} />
+          {material}
+        </mesh>
+      ))}
+      <mesh ref={ball} castShadow position={[1.45, -2.3, 0.9]}>
+        <sphereGeometry args={[0.22, 48, 48]} />
+        <meshStandardMaterial color={CLAY} roughness={0.6} />
+      </mesh>
+      {/* Paper floor that only shows shadows */}
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -2.6, 0]} receiveShadow>
+        <planeGeometry args={[30, 30]} />
+        <shadowMaterial opacity={0.14} />
+      </mesh>
     </group>
   );
 }
 
-/** Wireframe "UI" shapes that float above the field and tilt toward the pointer. */
-function FloatingShapes() {
-  const refs = useRef<(THREE.Mesh | null)[]>([]);
-  const { pointer } = useThree();
-  const shapes = useMemo(
-    () => [
-      // Kept to the edges and the right-hand side so they never sit behind the headline.
-      { pos: [-7.4, 3.1, -3] as const, geo: <icosahedronGeometry args={[0.6, 0]} />, color: "#3d7bff" },
-      { pos: [6.2, 2.6, -2.5] as const, geo: <torusGeometry args={[0.55, 0.16, 12, 40]} />, color: "#b05cff" },
-      { pos: [5.6, -1.8, 0] as const, geo: <boxGeometry args={[0.8, 0.5, 0.06]} />, color: "#7b5cff" },
-      { pos: [-6.2, -2.6, 0.5] as const, geo: <octahedronGeometry args={[0.4, 0]} />, color: "#7b5cff" },
-    ],
-    [],
-  );
-
-  useFrame((state) => {
-    const t = state.clock.elapsedTime;
-    refs.current.forEach((m, i) => {
-      if (!m) return;
-      m.position.y = shapes[i].pos[1] + Math.sin(t * 0.8 + i) * 0.25;
-      m.rotation.x = t * 0.25 + i + pointer.y * 0.5;
-      m.rotation.y = t * 0.3 + i + pointer.x * 0.6;
-    });
-  });
-
-  return (
-    <>
-      {shapes.map((s, i) => (
-        <mesh key={i} ref={(el) => { refs.current[i] = el; }} position={[s.pos[0], s.pos[1], s.pos[2]]}>
-          {s.geo}
-          <meshBasicMaterial color={s.color} wireframe transparent opacity={0.4} />
-        </mesh>
-      ))}
-    </>
-  );
-}
-
-export default function HeroScene() {
+export default function HeroScene({ still = false }: { still?: boolean }) {
   const wrap = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState(true);
-  const [count] = useState(() => (typeof window !== "undefined" && window.innerWidth < 768 ? 1600 : 4900));
+  const [visible, setVisible] = useState(true);
 
-  // Stop rendering when the hero is off-screen to save battery and main-thread time.
+  // Stop rendering when the hero is off-screen.
   useEffect(() => {
     if (!wrap.current) return;
-    const io = new IntersectionObserver(([e]) => setActive(e.isIntersecting), { threshold: 0 });
+    const io = new IntersectionObserver(([e]) => setVisible(e.isIntersecting));
     io.observe(wrap.current);
     return () => io.disconnect();
   }, []);
@@ -175,13 +89,31 @@ export default function HeroScene() {
   return (
     <div ref={wrap} className="absolute inset-0">
       <Canvas
-        frameloop={active ? "always" : "never"}
-        dpr={[1, 1.5]}
-        camera={{ position: [0, 1.2, 8], fov: 55 }}
-        gl={{ antialias: false, alpha: true, powerPreference: "high-performance" }}
+        shadows
+        frameloop={still ? "demand" : visible ? "always" : "never"}
+        dpr={[1, 1.75]}
+        camera={{ position: [0, 0.2, 12.6], fov: 34 }}
+        gl={{ antialias: true, alpha: true }}
+        onCreated={({ gl }) => {
+          gl.toneMapping = THREE.ACESFilmicToneMapping;
+        }}
       >
-        <ParticleField count={count} />
-        <FloatingShapes />
+        <hemisphereLight args={["#fff8ee", "#d9cbb5", 1.6]} />
+        <directionalLight
+          position={[-2.5, 10, 3.5]}
+          intensity={2.2}
+          color="#fff3e2"
+          castShadow
+          shadow-mapSize={[1024, 1024]}
+          shadow-camera-left={-6}
+          shadow-camera-right={6}
+          shadow-camera-top={6}
+          shadow-camera-bottom={-6}
+          shadow-radius={8}
+          shadow-bias={-0.0004}
+        />
+        <directionalLight position={[6, 2, 4]} intensity={0.6} color="#e9ecff" />
+        <Arch />
       </Canvas>
     </div>
   );

@@ -10,7 +10,7 @@ const FORMSPREE_ID = process.env.NEXT_PUBLIC_FORMSPREE_ID;
 type Status = "idle" | "sending" | "success" | "error";
 
 const field =
-  "w-full rounded-xl border border-line bg-white/[0.03] px-4 py-3.5 text-fg placeholder:text-muted/60 outline-none transition-colors focus:border-arc-1 focus:bg-white/[0.05]";
+  "w-full rounded-xl border border-ink/15 bg-white/70 px-4 py-3.5 text-ink placeholder:text-faint outline-none transition-colors focus:border-accent focus:bg-white";
 
 /** Sends submissions by email through Formspree. No database. */
 export function ContactForm() {
@@ -44,30 +44,30 @@ export function ContactForm() {
 
   if (status === "success") {
     return (
-      <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} className="glass flex min-h-[420px] flex-col items-center justify-center rounded-3xl p-10 text-center" role="status">
-        <span className="bg-arc mb-6 flex h-14 w-14 items-center justify-center rounded-full text-2xl text-white">✓</span>
-        <p className="max-w-sm text-xl">{f.success}</p>
+      <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} className="card flex min-h-[420px] flex-col items-center justify-center rounded-[1.75rem] p-10 text-center" role="status">
+        <span className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-sage text-2xl text-white">✓</span>
+        <p className="font-display max-w-sm text-3xl leading-snug">{f.success}</p>
       </motion.div>
     );
   }
 
   return (
-    <form onSubmit={onSubmit} className="glass space-y-5 rounded-3xl p-6 md:p-10" noValidate={false}>
+    <form onSubmit={onSubmit} className="card space-y-5 rounded-[1.75rem] p-6 md:p-10" noValidate={false}>
       <input type="hidden" name="_subject" value={`New enquiry — ${site.name}`} />
       <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden />
 
       <div className="grid gap-5 sm:grid-cols-2">
         <label className="block">
-          <span className="mb-2 block text-sm text-muted">{f.name}</span>
+          <span className="mb-2 block text-sm font-medium text-ink/70">{f.name}</span>
           <input name="name" required autoComplete="name" className={field} />
         </label>
         <label className="block">
-          <span className="mb-2 block text-sm text-muted">{f.email}</span>
+          <span className="mb-2 block text-sm font-medium text-ink/70">{f.email}</span>
           <input name="email" type="email" required autoComplete="email" className={field} />
         </label>
       </div>
       <label className="block">
-        <span className="mb-2 block text-sm text-muted">{f.company}</span>
+        <span className="mb-2 block text-sm font-medium text-ink/70">{f.company}</span>
         <input name="company" autoComplete="organization" className={field} />
       </label>
 
@@ -75,13 +75,13 @@ export function ContactForm() {
       <ChipGroup legend={f.budget} name="budget" options={f.budgetOptions} value={budget} onChange={setBudget} />
 
       <label className="block">
-        <span className="mb-2 block text-sm text-muted">{f.message}</span>
+        <span className="mb-2 block text-sm font-medium text-ink/70">{f.message}</span>
         <textarea name="message" required rows={5} className={`${field} resize-y`} />
       </label>
 
       <AnimatePresence>
         {status === "error" && (
-          <motion.p initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} role="alert" className="text-sm text-red-300">
+          <motion.p initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} role="alert" className="text-sm text-[#b2582f]">
             {FORMSPREE_ID ? f.error : f.notConfigured}{" "}
             <a href={`mailto:${site.email}`} className="underline">{site.email}</a>
           </motion.p>
@@ -91,7 +91,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="bg-arc w-full rounded-full px-6 py-4 font-semibold text-white shadow-[0_8px_40px_-8px_rgba(123,92,255,0.7)] transition-opacity disabled:opacity-60"
+        className="w-full rounded-full bg-ink px-6 py-4 font-medium text-paper transition-colors duration-300 hover:bg-accent disabled:opacity-60"
       >
         {status === "sending" ? f.sending : f.submit}
       </button>
@@ -102,13 +102,13 @@ export function ContactForm() {
 function ChipGroup({ legend, name, options, value, onChange }: { legend: string; name: string; options: string[]; value: string; onChange: (v: string) => void }) {
   return (
     <fieldset>
-      <legend className="mb-2 block text-sm text-muted">{legend}</legend>
+      <legend className="mb-2 block text-sm font-medium text-ink/70">{legend}</legend>
       <div className="flex flex-wrap gap-2">
         {options.map((o) => {
           const checked = value === o;
           return (
-            <label key={o} className={`relative cursor-pointer rounded-full border px-4 py-2 text-sm transition-colors has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-arc-1 ${checked ? "border-transparent text-white" : "border-line text-fg/80 hover:border-white/25"}`}>
-              {checked && <motion.span layoutId={`chip-${name}`} className="bg-arc absolute inset-0 -z-10 rounded-full" transition={{ type: "spring", stiffness: 500, damping: 35 }} />}
+            <label key={o} className={`relative isolate cursor-pointer rounded-full border px-4 py-2 text-sm transition-colors has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-accent ${checked ? "border-transparent text-paper" : "border-ink/15 text-ink/80 hover:border-ink/40"}`}>
+              {checked && <motion.span layoutId={`chip-${name}`} className="absolute inset-0 -z-10 rounded-full bg-ink" transition={{ type: "spring", stiffness: 500, damping: 35 }} />}
               <input type="radio" name={name} value={o} checked={checked} onChange={() => onChange(o)} className="sr-only" />
               <span className="relative">{o}</span>
             </label>

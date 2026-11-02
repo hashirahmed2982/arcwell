@@ -16,11 +16,10 @@ export function ogImage(title: string, eyebrow = site.tagline) {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: 72,
-          background: "#06060a",
-          backgroundImage:
-            "radial-gradient(circle at 85% 10%, rgba(123,92,255,0.45), transparent 45%), radial-gradient(circle at 10% 100%, rgba(61,123,255,0.35), transparent 45%)",
-          color: "#f3f3f7",
-          fontFamily: "sans-serif",
+          background: "#f5f1ea",
+          backgroundImage: "radial-gradient(circle at 90% 0%, #fbe3c9, transparent 50%)",
+          color: "#1d1b18",
+          fontFamily: "serif",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
@@ -28,24 +27,30 @@ export function ogImage(title: string, eyebrow = site.tagline) {
             style={{
               width: 56,
               height: 56,
-              borderRadius: 16,
-              background: "linear-gradient(120deg, #3d7bff, #7b5cff 55%, #b05cff)",
+              borderRadius: 14,
+              background: "#1d1b18",
+              display: "flex",
+              alignItems: "flex-end",
+              justifyContent: "center",
+              paddingBottom: 10,
             }}
-          />
-          <div style={{ fontSize: 34, fontWeight: 700 }}>{site.name}</div>
+          >
+            <div style={{ width: 28, height: 34, borderTopLeftRadius: 14, borderTopRightRadius: 14, border: "4px solid #f5f1ea", borderBottom: "none" }} />
+          </div>
+          <div style={{ fontSize: 36 }}>{site.name}</div>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-          <div style={{ fontSize: 26, color: "#9b9bb0", letterSpacing: 2, textTransform: "uppercase" }}>{eyebrow}</div>
-          <div style={{ fontSize: 76, fontWeight: 800, lineHeight: 1.05, letterSpacing: -2, maxWidth: 1000 }}>
+          <div style={{ fontSize: 28, color: "#6f685e", fontStyle: "italic" }}>{eyebrow}</div>
+          <div style={{ fontSize: 84, lineHeight: 1.02, letterSpacing: -1.5, maxWidth: 1000 }}>
             {title}
           </div>
         </div>
         <div
           style={{
-            height: 8,
-            width: "100%",
-            borderRadius: 8,
-            background: "linear-gradient(90deg, #3d7bff, #7b5cff 55%, #b05cff)",
+            height: 6,
+            width: 120,
+            borderRadius: 6,
+            background: "#c4683d",
           }}
         />
       </div>
