@@ -4,7 +4,7 @@
 import { site } from "./site";
 import { sampleCaseStudies, sampleCaseStudyDetails } from "./samples";
 
-export type MockKind = "erp" | "mobile" | "web" | "albmap" | "cardcove";
+export type MockKind = "erp" | "mobile" | "web" | "discovery" | "b2bportal";
 
 export type CaseStudy = {
   slug: string;
@@ -34,46 +34,47 @@ export const work = {
   demoIntro: "Products we built to show how we work. Click around — nothing you do here is saved.",
 };
 
+// Both clients are under NDA: no names, locations, URLs or other identifying details.
 const realCaseStudies: CaseStudy[] = [
   {
-    slug: "albmap",
-    title: "AlbMap — business and event discovery for Albania",
-    clientType: "Startup · Mobile, web and admin",
-    summary: "One API powering an iOS and Android app, a three-language website and an admin portal.",
+    slug: "local-discovery-platform",
+    title: "Business and event discovery platform for a city-guide startup",
+    clientType: "Startup · Mobile, web and admin · Live",
+    summary: "One API powering an iOS and Android app, a multilingual website and an admin portal — live in production.",
     challenge:
-      "Local businesses and events in Albania were scattered across social media and outdated listings. The client wanted one place to discover them on a map — and a way for business owners to list themselves and post events without going through anyone.",
+      "Local businesses and events were scattered across social media and outdated listings. The client wanted one place to discover them on a map — and a way for business owners to list themselves and post events without going through anyone.",
     solution:
-      "We built a Flutter app for iOS and Android, a Next.js website in English, German and Albanian, a Next.js admin portal, and one Node.js + MySQL API behind all three. Owners submit businesses and events; admins review them in an approval queue; visitors browse a live map, save favourites, leave reviews and mark events they're interested in.",
+      "We built a Flutter app for iOS and Android, a multilingual Next.js website, a Next.js admin portal, and one Node.js + MySQL API behind all three. Owners submit businesses and events; admins review them in an approval queue; visitors browse a live map, save favourites, leave reviews and mark events they're interested in.",
     result:
-      "Three products now run on a single API and database. Sign-in works with email, Google, Facebook and Apple, the app keeps working offline from its local cache, and listings only go public after an admin approves them.",
+      "All three products are live and run on a single API and database. Sign-in works with email, Google, Facebook and Apple, the app keeps working offline from its local cache, and listings only go public after an admin approves them.",
     metrics: [
       { value: "3", label: "Products on one API — app, website, admin" },
-      { value: "3", label: "Languages: English, German, Albanian" },
       { value: "iOS + Android", label: "From one Flutter codebase" },
+      { value: "Live", label: "Completed and running in production" },
     ],
     tech: ["Flutter", "Next.js", "Node.js", "MySQL", "Firebase"],
-    mock: "albmap",
+    mock: "discovery",
     accent: ["#eef4f1", "#0f766e"],
     images: [],
   },
   {
-    slug: "card-cove",
-    title: "Card Cove — B2B portal for wholesale digital gift cards",
-    clientType: "B2B · Web platform",
+    slug: "b2b-gift-card-portal",
+    title: "B2B ordering portal for a digital gift-card distributor",
+    clientType: "B2B · Web platform · Live",
     summary: "Corporate clients order gift-card codes in bulk from a prepaid wallet, delivered instantly and encrypted.",
     challenge:
-      "Card Cove sells digital gift cards and vouchers to corporate clients in bulk. Orders, wallet top-ups and code delivery were handled by hand — slow for clients and risky for high-value codes.",
+      "The client sells digital gift cards and vouchers to corporate buyers in bulk. Orders, wallet top-ups and code delivery were handled by hand — slow for buyers and risky for high-value codes.",
     solution:
-      "A client portal and an admin portal in Next.js, on a Node.js + MySQL API. Clients top up a prepaid wallet, see products with their own pricing and place bulk orders. Codes come from stock or a supplier API, are stored encrypted and arrive by email in a password-protected file. Admins approve top-ups, manage products, clients and pricing, and run reports.",
+      "A client portal and an admin portal in Next.js, on a Node.js + MySQL API. Buyers top up a prepaid wallet, see products at their own pricing and place bulk orders. Codes come from stock or a supplier API, are stored encrypted and arrive by email in a password-protected file. Admins approve top-ups, manage products, buyers and pricing, and run reports.",
     result:
-      "Ordering, top-ups and code delivery now run in one audited system with two-factor sign-in and ten built-in reports — from real margin and inventory to receivables ageing and best sellers.",
+      "Ordering, top-ups and code delivery now run live in one audited system with two-factor sign-in and ten built-in reports — from real margin and inventory to receivables ageing and best sellers.",
     metrics: [
       { value: "10", label: "Built-in business reports" },
       { value: "AES-256", label: "Encryption for every stored code" },
       { value: "2 portals", label: "Client and admin, on one API" },
     ],
     tech: ["Next.js", "React", "Node.js", "MySQL"],
-    mock: "cardcove",
+    mock: "b2bportal",
     accent: ["#f3f1fb", "#4f46e5"],
     images: [],
   },

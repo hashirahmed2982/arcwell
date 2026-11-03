@@ -194,8 +194,8 @@ export function WebScreen({ accent = "#2453e6" }: { accent?: string }) {
   );
 }
 
-/** AlbMap: map-first discovery screen with pins, category chips and a business sheet. */
-export function AlbmapScreen({ accent = "#0f766e" }: { accent?: string }) {
+/** Discovery app: map-first screen with pins, category chips and a business sheet. */
+export function DiscoveryScreen({ accent = "#0f766e" }: { accent?: string }) {
   const pins = [
     { x: 22, y: 30, c: accent }, { x: 58, y: 22, c: "#f59e0b" }, { x: 70, y: 46, c: accent },
     { x: 35, y: 55, c: "#e11d48" }, { x: 80, y: 28, c: "#2453e6" }, { x: 48, y: 40, c: accent, big: true },
@@ -226,7 +226,7 @@ export function AlbmapScreen({ accent = "#0f766e" }: { accent?: string }) {
       <div className="relative space-y-2 p-3 pt-4">
         <div className="flex items-center gap-2 rounded-xl bg-white px-3 py-2 text-[10px] text-muted shadow-sm">
           <svg width="11" height="11" viewBox="0 0 20 20" aria-hidden><circle cx="9" cy="9" r="6" stroke="currentColor" strokeWidth="2" fill="none" /><path d="M14 14l4 4" stroke="currentColor" strokeWidth="2" /></svg>
-          Search Tirana
+          Search nearby
         </div>
         <div className="flex gap-1.5 text-[9px]">
           {["Cafés", "Events", "Food", "Shops"].map((c, i) => (
@@ -240,7 +240,7 @@ export function AlbmapScreen({ accent = "#0f766e" }: { accent?: string }) {
         <div className="flex gap-2.5">
           <div className="h-11 w-11 shrink-0 rounded-lg" style={{ background: `linear-gradient(135deg, ${accent}, #84cc16)` }} />
           <div className="min-w-0 flex-1">
-            <p className="truncate text-[11px] font-semibold">Kafe Lulishte</p>
+            <p className="truncate text-[11px] font-semibold">Corner Café</p>
             <p className="text-[9px] text-muted">Café · ★ 4.7 · 350 m</p>
             <p className="mt-0.5 text-[9px] font-medium" style={{ color: accent }}>Open now</p>
           </div>
@@ -255,8 +255,8 @@ export function AlbmapScreen({ accent = "#0f766e" }: { accent?: string }) {
   );
 }
 
-/** Card Cove: B2B client portal — wallet, products with client pricing and recent orders. */
-export function CardCoveScreen({ accent = "#4f46e5" }: { accent?: string }) {
+/** B2B client portal — wallet, products with client pricing and recent orders. */
+export function B2BPortalScreen({ accent = "#4f46e5" }: { accent?: string }) {
   const products = [
     { name: "Gaming card", denom: "$50", tone: "#4f46e5" },
     { name: "Streaming voucher", denom: "$25", tone: "#e11d48" },
@@ -266,7 +266,7 @@ export function CardCoveScreen({ accent = "#4f46e5" }: { accent?: string }) {
   return (
     <div className="flex bg-white text-ink">
       <aside className="hidden w-32 shrink-0 flex-col gap-0.5 border-r border-ink/8 bg-[#f7f8fa] p-3 text-[10.5px] sm:flex">
-        <p className="mb-3 flex items-center gap-1.5 font-semibold"><span className="h-4 w-4 rounded" style={{ background: accent }} /> Card Cove</p>
+        <p className="mb-3 flex items-center gap-1.5 font-semibold"><span className="h-4 w-4 rounded" style={{ background: accent }} /> Client portal</p>
         {["Dashboard", "Products", "Cart", "Orders", "Wallet", "Settings"].map((m, i) => (
           <span key={m} className={`rounded-md px-2 py-1.5 ${i === 1 ? "bg-white font-medium shadow-[0_1px_2px_rgba(0,0,0,0.06)]" : "text-muted"}`}>{m}</span>
         ))}
@@ -307,16 +307,16 @@ export function CardCoveScreen({ accent = "#4f46e5" }: { accent?: string }) {
 
 /** Device frame + illustrative screen for a case study. */
 export function CaseMock({ kind, accent }: { kind: MockKind; accent: string }) {
-  if (kind === "mobile" || kind === "albmap")
+  if (kind === "mobile" || kind === "discovery")
     return (
       <div className="mx-auto w-[44%] max-w-[230px]">
-        <PhoneFrame>{kind === "albmap" ? <AlbmapScreen accent={accent} /> : <MobileAppScreen accent={accent} />}</PhoneFrame>
+        <PhoneFrame>{kind === "discovery" ? <DiscoveryScreen accent={accent} /> : <MobileAppScreen accent={accent} />}</PhoneFrame>
       </div>
     );
-  if (kind === "cardcove")
+  if (kind === "b2bportal")
     return (
-      <BrowserFrame className="w-full" url="Card Cove · client portal">
-        <CardCoveScreen accent={accent} />
+      <BrowserFrame className="w-full" url="client portal">
+        <B2BPortalScreen accent={accent} />
       </BrowserFrame>
     );
   return (
