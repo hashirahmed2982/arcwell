@@ -305,6 +305,41 @@ export function B2BPortalScreen({ accent = "#4f46e5" }: { accent?: string }) {
   );
 }
 
+/** Marketing website for a services agency: navy hero, gold accent, service grid. */
+export function MarketingSiteScreen({ accent = "#1e3a8a" }: { accent?: string }) {
+  const services = ["Account management", "Advertising", "Compliance", "FBA prep", "Accounting", "A+ Content"];
+  return (
+    <div className="bg-white text-ink">
+      <div className="px-5 pb-5 pt-3 text-white" style={{ background: `linear-gradient(135deg, #0b1b33, ${accent})` }}>
+        <div className="flex items-center justify-between text-[9px]">
+          <span className="flex items-center gap-1.5 text-[11px] font-semibold">
+            <svg width="14" height="12" viewBox="0 0 24 20" aria-hidden><path d="M2 19L9 6l4 6 3-4 6 11z" fill="#f5b942" /></svg>
+            Seller Growth Co.
+          </span>
+          <span className="flex gap-3 opacity-80"><span>Services</span><span>About</span><span>Contact</span></span>
+        </div>
+        <p className="mt-5 text-[9px] font-semibold uppercase tracking-wider text-[#f5b942]">Your Amazon growth partner</p>
+        <p className="mt-1.5 max-w-[85%] text-[16px] font-semibold leading-tight">Everything your brand needs to grow on Amazon.</p>
+        <div className="mt-3 flex gap-2 text-[9px] font-semibold">
+          <span className="rounded-md bg-[#f5b942] px-2.5 py-1.5 text-[#0b1b33]">Book a consultation</span>
+          <span className="rounded-md border border-white/30 px-2.5 py-1.5">Our services</span>
+        </div>
+      </div>
+      <div className="grid grid-cols-3 gap-2 p-4">
+        {services.map((sv, i) => (
+          <div key={sv} className="rounded-lg border border-ink/8 p-2.5">
+            <span className="flex h-6 w-6 items-center justify-center rounded-md text-[10px] font-bold" style={{ background: i % 2 ? "#fdf3dc" : "#e8edfa", color: i % 2 ? "#b7791f" : accent }}>
+              {sv[0]}
+            </span>
+            <p className="mt-2 text-[9.5px] font-semibold leading-tight">{sv}</p>
+            <p className="mt-1 text-[8px] text-muted">Learn more →</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 /** Device frame + illustrative screen for a case study. */
 export function CaseMock({ kind, accent }: { kind: MockKind; accent: string }) {
   if (kind === "mobile" || kind === "discovery")
@@ -312,6 +347,12 @@ export function CaseMock({ kind, accent }: { kind: MockKind; accent: string }) {
       <div className="mx-auto w-[44%] max-w-[230px]">
         <PhoneFrame>{kind === "discovery" ? <DiscoveryScreen accent={accent} /> : <MobileAppScreen accent={accent} />}</PhoneFrame>
       </div>
+    );
+  if (kind === "marketing")
+    return (
+      <BrowserFrame className="w-full" url="agency website">
+        <MarketingSiteScreen accent={accent} />
+      </BrowserFrame>
     );
   if (kind === "b2bportal")
     return (

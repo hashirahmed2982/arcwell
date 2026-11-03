@@ -4,7 +4,7 @@
 import { site } from "./site";
 import { sampleCaseStudies, sampleCaseStudyDetails } from "./samples";
 
-export type MockKind = "erp" | "mobile" | "web" | "discovery" | "b2bportal";
+export type MockKind = "erp" | "mobile" | "web" | "discovery" | "b2bportal" | "marketing";
 
 export type CaseStudy = {
   slug: string;
@@ -76,6 +76,27 @@ const realCaseStudies: CaseStudy[] = [
     tech: ["Next.js", "React", "Node.js", "MySQL"],
     mock: "b2bportal",
     accent: ["#f3f1fb", "#4f46e5"],
+    images: [],
+  },
+  {
+    slug: "amazon-agency-website",
+    title: "Marketing website for an Amazon seller-services agency",
+    clientType: "Services · Website · Live",
+    summary: "A fast, SEO-ready site with a dedicated page for each of seven services — built to turn visitors into enquiries.",
+    challenge:
+      "A growing agency helping brands sell on Amazon — from account management and advertising to compliance, taxes and FBA prep — had no website that explained what it does or gave prospects a reason to get in touch.",
+    solution:
+      "We designed and built a Next.js site with a clear brand system, a homepage that walks through services, process, mission and testimonials, and a dedicated page for every service with what's included and why to choose them. All copy lives in one file, so the team can update services without touching code.",
+    result:
+      "The site is live and statically generated, so it loads fast, and each service has its own page built to rank in search. Every page ends in a clear call to action that sends enquiries straight to the team's inbox.",
+    metrics: [
+      { value: "7", label: "Service pages, each targeting its own search" },
+      { value: "1 file", label: "Holds all copy — no developer needed to edit" },
+      { value: "Live", label: "Completed and running in production" },
+    ],
+    tech: ["Next.js", "React", "Tailwind CSS"],
+    mock: "marketing",
+    accent: ["#eef2f9", "#1e3a8a"],
     images: [],
   },
 ];
