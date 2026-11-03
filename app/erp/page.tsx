@@ -6,6 +6,9 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ProcessTimeline } from "@/components/home/ProcessTimeline";
 import { CTASection } from "@/components/home/CTASection";
 import { Testimonials } from "@/components/home/Testimonials";
+import Link from "next/link";
+import { erpChecklist, workflowReview } from "@/content/resources";
+import { site } from "@/content/site";
 import { BookCallButton } from "@/components/ui/BookCallButton";
 import { BrowserFrame, ErpScreen, PhoneFrame, MobileAppScreen } from "@/components/ui/Mocks";
 
@@ -75,6 +78,23 @@ export default function ErpPage() {
       </section>
 
       <ProcessTimeline chapter="Process" heading={erp.howHeading} steps={erp.steps} />
+
+      <section className="pb-8">
+        <div className="container-x grid gap-4 md:grid-cols-2">
+          <Reveal className="rounded-2xl bg-ink-2 p-8 text-white md:p-10">
+            <p className="chapter !text-[#8fb0ff]">Free resource</p>
+            <h2 className="font-display mt-4 text-3xl">{erpChecklist.heading}</h2>
+            <p className="mt-3 text-white/70">{erpChecklist.intro}</p>
+            <Link href={`/resources/${erpChecklist.slug}`} className="mt-6 inline-flex rounded-lg bg-white px-5 py-3 font-semibold text-ink">Get the checklist</Link>
+          </Reveal>
+          <Reveal delay={0.1} className="card rounded-2xl p-8 md:p-10">
+            <p className="chapter">Free consultation</p>
+            <h2 className="font-display mt-4 text-3xl">{workflowReview.heading}</h2>
+            <p className="mt-3 text-muted">{workflowReview.text}</p>
+            <a href={site.bookCallUrl} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex rounded-lg bg-accent px-5 py-3 font-semibold text-white">{workflowReview.cta}</a>
+          </Reveal>
+        </div>
+      </section>
 
       <Testimonials chapter="Client stories" />
 

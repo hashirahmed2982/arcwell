@@ -1,5 +1,7 @@
 # TODO before launch
 
+**Start with `LAUNCH_CONTENT.md`** — the full list of content needed from you.
+
 ## ⚠️ Turn off sample content
 
 `showSampleContent: true` in `content/site.ts` fills the site with **invented** stats, testimonials,
@@ -8,6 +10,10 @@ and shows a yellow "Preview" badge. Set it to `false` before launch and add real
 
 - [ ] `realStats`, `realTestimonials`, `realClients`, `realDemoApps` in `content/site.ts`
 - [ ] Real case studies (with `metrics`) in `realCaseStudies` in `content/work.ts`
+- [ ] Real prices in `content/pricing.ts` and `content/estimate.ts` (currently sample)
+- [ ] Review profiles and company registration (`realReviews`, `site.registration`)
+- [ ] Review or replace the sample Insights posts in `content/insights.ts`
+- [ ] Have the privacy policy and terms in `content/legal.ts` reviewed
 - [ ] Set `showSampleContent: false`
 
 ## Must replace (placeholders)

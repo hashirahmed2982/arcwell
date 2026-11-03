@@ -25,6 +25,18 @@ npm run build      # static export to ./out
 npm run typecheck
 ```
 
+## Lead capture
+
+- **Forms** (contact, estimate, checklist) go through `lib/leads.ts`: emailed via Formspree and optionally POSTed to a
+  webhook (Google Sheet, HubSpot, Zapier). Each lead includes where the visitor came from (UTM tags / referrer, first touch).
+- **Events** tracked in Plausible or GA: Lead, Book call click, WhatsApp click, Email click, Estimate click, Estimate completed.
+- **Pages:** `/estimate` (calculator), `/pricing`, `/agencies`, `/solutions/*` (SEO landing pages), `/insights/*` (blog),
+  `/resources/erp-readiness-checklist` (email-gated), `/privacy`, `/terms`.
+- **Also:** embedded booking calendar and "we're online" indicator on Contact, FAQ with structured data,
+  review badges, WhatsApp button and a sticky mobile "Get an estimate" bar.
+
+See `LAUNCH_CONTENT.md` for the content needed before launch.
+
 ## Edit copy without touching components
 
 All text lives in `/content`:
@@ -38,6 +50,14 @@ All text lives in `/content`:
 | `content/work.ts` | Work page and **case studies** (each one becomes `/work/[slug]`) |
 | `content/about.ts` | About page |
 | `content/contact.ts` | Contact page and form labels |
+| `content/pricing.ts` | Engagement models, starting prices, currencies, FAQ |
+| `content/estimate.ts` | Estimate calculator questions and prices |
+| `content/agencies.ts` | White-label page for agencies |
+| `content/solutions.ts` | SEO landing pages (services and industries) |
+| `content/insights.ts` | Blog posts |
+| `content/resources.ts` | ERP checklist and free workflow review |
+| `content/legal.ts` | Privacy policy and terms (template — get it reviewed) |
+| `content/samples.ts` | Sample content shown while `showSampleContent` is on |
 
 - **Stats strip** and **testimonials** are hidden until you add real entries in `content/site.ts`.
 - **Case study images**: put files in `public/work/` and list them in that study's `images` array. Until then a drawn placeholder screen is shown.
@@ -47,7 +67,8 @@ All text lives in `/content`:
 Copy `.env.example` to `.env.local` (and add the same vars in Vercel → Project → Settings → Environment Variables):
 
 - `NEXT_PUBLIC_FORMSPREE_ID` — the contact form posts to `https://formspree.io/f/<id>`, which emails each submission to you. No database.
-- `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` — optional; enables Plausible analytics.
+- `NEXT_PUBLIC_LEAD_WEBHOOK_URL` — optional; also sends each lead as JSON to a Sheet/CRM webhook.
+- `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` or `NEXT_PUBLIC_GA_ID` — analytics (match `analytics` in `content/site.ts`).
 
 ## Deploy to Vercel
 

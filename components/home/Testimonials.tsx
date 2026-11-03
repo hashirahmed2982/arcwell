@@ -1,6 +1,7 @@
 import { testimonials } from "@/content/site";
 import { Reveal } from "@/components/motion/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { ReviewBadges } from "@/components/ui/ReviewBadges";
 
 const tones = ["#2453e6", "#0f766e", "#4f46e5", "#0e7490"];
 const initials = (n: string) => n.split(" ").map((p) => p[0]).slice(0, 2).join("");
@@ -34,7 +35,10 @@ export function Testimonials({ chapter = "07 — Client stories" }: { chapter?: 
   return (
     <section className="bg-paper-2 py-24 md:py-32">
       <div className="container-x">
-        <SectionHeading chapter={chapter} title="What our clients *say*" />
+        <div className="flex flex-wrap items-end justify-between gap-x-10">
+          <SectionHeading chapter={chapter} title="What our clients *say*" />
+          <ReviewBadges className="mb-12 md:mb-16" />
+        </div>
         <Reveal>
           <figure className="card grid gap-10 rounded-2xl p-8 md:p-12 lg:grid-cols-[1fr_auto] lg:items-end">
             <div>

@@ -66,7 +66,11 @@ export function Hero() {
             <Button href={hero.secondaryCta.href} variant="ghost">{hero.secondaryCta.label}</Button>
           </Reveal>
           <Reveal delay={0.8}>
-            <p className="mt-10 text-sm text-muted">
+            <p className="mt-6 text-sm text-muted">
+              Not ready to talk?{" "}
+              <a href="/estimate" className="font-semibold text-accent hover:underline">Get a ballpark estimate in 2 minutes →</a>
+            </p>
+            <p className="mt-2 text-sm text-muted">
               {hero.servingLabel} <span className="font-medium text-ink">{markets.map((m) => m[0]).join(" · ")}</span>
             </p>
           </Reveal>

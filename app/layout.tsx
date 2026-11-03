@@ -1,12 +1,14 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Script from "next/script";
 import { site } from "@/content/site";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { Cursor } from "@/components/motion/Cursor";
 import { SampleBadge } from "@/components/layout/SampleBadge";
+import { LeadTracking } from "@/components/layout/LeadTracking";
+import { Analytics } from "@/components/layout/Analytics";
+import { FloatingActions } from "@/components/layout/FloatingActions";
 import "./globals.css";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" });
@@ -23,8 +25,6 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = { themeColor: "#ffffff", colorScheme: "light" };
-
-const plausible = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
 
 const orgJsonLd = {
   "@context": "https://schema.org",
@@ -50,8 +50,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="main">{children}</main>
         <Footer />
         <SampleBadge />
+        <FloatingActions />
+        <LeadTracking />
+        <Analytics />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }} />
-        {plausible && <Script defer data-domain={plausible} src="https://plausible.io/js/script.js" strategy="afterInteractive" />}
       </body>
     </html>
   );

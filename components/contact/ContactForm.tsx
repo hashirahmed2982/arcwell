@@ -4,8 +4,7 @@ import { useState, type FormEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { contact } from "@/content/contact";
 import { site } from "@/content/site";
-
-const FORMSPREE_ID = process.env.NEXT_PUBLIC_FORMSPREE_ID;
+import { formToObject, submitLead } from "@/lib/leads";
 
 type Status = "idle" | "sending" | "success" | "error";
 
@@ -16,28 +15,23 @@ const field =
 export function ContactForm() {
   const f = contact.form;
   const [status, setStatus] = useState<Status>("idle");
+  const [notConfigured, setNotConfigured] = useState(false);
   const [service, setService] = useState<string>("");
   const [budget, setBudget] = useState<string>("");
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (!FORMSPREE_ID) {
-      setStatus("error");
-      return;
-    }
+    const form = e.currentTarget;
     setStatus("sending");
-    try {
-      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
-        method: "POST",
-        headers: { Accept: "application/json" },
-        body: new FormData(e.currentTarget),
-      });
-      if (!res.ok) throw new Error(String(res.status));
+    // Attribution (where the visitor came from) is attached automatically by submitLead.
+    const r = await submitLead("enquiry", formToObject(form));
+    if (r === "ok") {
       setStatus("success");
-      e.currentTarget.reset();
+      form.reset();
       setService("");
       setBudget("");
-    } catch {
+    } else {
+      setNotConfigured(r === "not-configured");
       setStatus("error");
     }
   }
@@ -53,7 +47,6 @@ export function ContactForm() {
 
   return (
     <form onSubmit={onSubmit} className="card space-y-5 rounded-2xl p-6 md:p-10" noValidate={false}>
-      <input type="hidden" name="_subject" value={`New enquiry — ${site.name}`} />
       <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden />
 
       <div className="grid gap-5 sm:grid-cols-2">
@@ -82,7 +75,7 @@ export function ContactForm() {
       <AnimatePresence>
         {status === "error" && (
           <motion.p initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} role="alert" className="text-sm text-[#b2582f]">
-            {FORMSPREE_ID ? f.error : f.notConfigured}{" "}
+            {notConfigured ? f.notConfigured : f.error}{" "}
             <a href={`mailto:${site.email}`} className="underline">{site.email}</a>
           </motion.p>
         )}

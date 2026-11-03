@@ -1,4 +1,4 @@
-import { sampleClients, sampleDemoApps, sampleStats, sampleTestimonials } from "./samples";
+import { sampleClients, sampleDemoApps, sampleRegistration, sampleReviews, sampleStats, sampleTestimonials } from "./samples";
 
 // Global site settings. Edit these values — no component changes needed.
 
@@ -22,12 +22,24 @@ export const site = {
   // invented sample content (content/samples.ts) so you can see the finished design.
   // Set to false before launch — sections then show only the real data below.
   showSampleContent: true,
+
+  // Analytics: "plausible" (no cookie banner needed), "ga" (Google Analytics, shows a consent banner) or "none".
+  // Set NEXT_PUBLIC_PLAUSIBLE_DOMAIN or NEXT_PUBLIC_GA_ID to match.
+  analytics: "plausible" as "plausible" | "ga" | "none",
+
+  // Office hours in Karachi (PKT, UTC+5), used for the "we're online" indicator.
+  hours: { timezone: "Asia/Karachi", label: "PKT", days: [1, 2, 3, 4, 5, 6], open: 10, close: 19 },
+
+  // Company registration shown in the footer (leave empty to hide).
+  registration: { secp: "", ntn: "", pseb: "" },
 };
 
 export const nav = [
   { label: "Services", href: "/services" },
   { label: "ERP", href: "/erp" },
   { label: "Work", href: "/work" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "For agencies", href: "/agencies" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
@@ -66,9 +78,15 @@ const realClients: string[] = [];
 // Demo apps visitors can try: { title, description, tags, href }
 const realDemoApps: { title: string; description: string; tags: string[]; href: string }[] = [];
 
+// Review-platform profiles: { platform, rating, reviews, href }. Only list profiles that exist.
+const realReviews: { platform: string; rating: string; reviews: string; href: string }[] = [];
+
 const pick = <T,>(real: T[], sample: T[]) => (real.length ? real : site.showSampleContent ? sample : []);
 
 export const stats = pick(realStats, sampleStats);
 export const testimonials = pick(realTestimonials, sampleTestimonials);
 export const clients = pick(realClients, sampleClients);
 export const demoApps = pick(realDemoApps, sampleDemoApps);
+export const reviews = pick(realReviews, sampleReviews);
+export const registration =
+  site.registration.secp || site.registration.ntn || !site.showSampleContent ? site.registration : sampleRegistration;

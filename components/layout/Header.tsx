@@ -36,13 +36,13 @@ export function Header() {
           <Logo />
         </Link>
 
-        <nav aria-label="Main" className="hidden items-center gap-1 md:flex">
+        <nav aria-label="Main" className="hidden items-center xl:flex">
           {nav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               aria-current={isActive(item.href) ? "page" : undefined}
-              className={`relative isolate px-4 py-2 text-[14px] font-medium transition-colors ${isActive(item.href) ? "text-ink" : "text-muted hover:text-ink"}`}
+              className={`relative isolate px-3.5 py-2 text-[14px] font-medium transition-colors ${isActive(item.href) ? "text-ink" : "text-muted hover:text-ink"}`}
             >
               {isActive(item.href) && (
                 <motion.span layoutId="nav-pill" className="absolute inset-x-4 -bottom-[1px] h-[2px] rounded-full bg-accent" transition={{ type: "spring", stiffness: 400, damping: 35 }} />
@@ -52,7 +52,10 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="hidden md:block">
+        <div className="hidden items-center gap-2 md:flex">
+          <Link href="/estimate" className="rounded-lg border border-line px-4 py-2.5 text-[14px] font-semibold transition-colors hover:border-ink/40">
+            Get an estimate
+          </Link>
           <Magnetic>
             <a href={site.bookCallUrl} target="_blank" rel="noopener noreferrer" className="inline-flex rounded-lg bg-ink px-5 py-2.5 text-[14px] font-semibold text-white transition-colors duration-200 hover:bg-accent">
               Book a call
@@ -62,7 +65,7 @@ export function Header() {
 
         <button
           type="button"
-          className="relative z-50 flex h-10 w-10 items-center justify-center rounded-lg border border-ink/15 bg-white md:hidden"
+          className="relative z-50 flex h-10 w-10 items-center justify-center rounded-lg border border-ink/15 bg-white xl:hidden"
           aria-expanded={open}
           aria-controls="mobile-nav"
           aria-label={open ? "Close menu" : "Open menu"}
@@ -83,19 +86,20 @@ export function Header() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 bg-white md:hidden"
+            className="fixed inset-0 z-40 overflow-y-auto bg-white xl:hidden"
           >
-            <nav aria-label="Mobile" className="container-x flex h-full flex-col justify-center">
+            <nav aria-label="Mobile" className="container-x flex min-h-full flex-col justify-center py-24">
               {nav.map((item, i) => (
                 <motion.div key={item.href} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 * i }}>
-                  <Link href={item.href} className="font-display block border-b border-line py-4 text-3xl">
+                  <Link href={item.href} className="font-display block border-b border-line py-3.5 text-2xl">
                     {item.label}
                   </Link>
                 </motion.div>
               ))}
-              <a href={site.bookCallUrl} target="_blank" rel="noopener noreferrer" className="mt-10 inline-flex w-fit rounded-lg bg-accent px-6 py-3.5 font-semibold text-white">
-                Book a call
-              </a>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link href="/estimate" className="inline-flex rounded-lg bg-accent px-6 py-3.5 font-semibold text-white">Get an estimate</Link>
+                <a href={site.bookCallUrl} target="_blank" rel="noopener noreferrer" className="inline-flex rounded-lg border border-line px-6 py-3.5 font-semibold">Book a call</a>
+              </div>
             </nav>
           </motion.div>
         )}

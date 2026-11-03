@@ -131,3 +131,12 @@ export const sampleDemoApps = [
     href: "#",
   },
 ];
+
+// Review-platform badges (invented ratings).
+export const sampleReviews = [
+  { platform: "Clutch", rating: "4.9", reviews: "12 reviews", href: "#" },
+  { platform: "GoodFirms", rating: "5.0", reviews: "8 reviews", href: "#" },
+  { platform: "Upwork", rating: "Top Rated", reviews: "100% Job Success", href: "#" },
+];
+
+export const sampleRegistration = { secp: "0123456", ntn: "1234567-8", pseb: "Z-00000" };
