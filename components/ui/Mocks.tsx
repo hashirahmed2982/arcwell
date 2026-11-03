@@ -194,15 +194,130 @@ export function WebScreen({ accent = "#2453e6" }: { accent?: string }) {
   );
 }
 
+/** AlbMap: map-first discovery screen with pins, category chips and a business sheet. */
+export function AlbmapScreen({ accent = "#0f766e" }: { accent?: string }) {
+  const pins = [
+    { x: 22, y: 30, c: accent }, { x: 58, y: 22, c: "#f59e0b" }, { x: 70, y: 46, c: accent },
+    { x: 35, y: 55, c: "#e11d48" }, { x: 80, y: 28, c: "#2453e6" }, { x: 48, y: 40, c: accent, big: true },
+  ];
+  return (
+    <div className="relative h-[calc(100%-24px)] overflow-hidden text-ink">
+      {/* Map */}
+      <div className="absolute inset-0 bg-[#eef2ea]">
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 h-full w-full" aria-hidden>
+          <path d="M-5 62 C 25 55, 45 70, 105 58" stroke="#c9dbe6" strokeWidth="7" fill="none" />
+          <path d="M10 -5 L 30 105" stroke="#ffffff" strokeWidth="2.6" />
+          <path d="M-5 35 L 105 25" stroke="#ffffff" strokeWidth="2.6" />
+          <path d="M60 -5 L 75 105" stroke="#ffffff" strokeWidth="2" />
+          <path d="M-5 80 L 105 88" stroke="#ffffff" strokeWidth="2" />
+          <rect x="36" y="44" width="16" height="10" rx="2" fill="#d7e6cf" />
+          <rect x="78" y="62" width="14" height="12" rx="2" fill="#d7e6cf" />
+        </svg>
+        {pins.map((p, i) => (
+          <span key={i} className="absolute -translate-x-1/2 -translate-y-full" style={{ left: `${p.x}%`, top: `${p.y}%` }}>
+            <svg width={p.big ? 26 : 18} height={p.big ? 32 : 22} viewBox="0 0 24 30" aria-hidden>
+              <path d="M12 29s9-9.2 9-16a9 9 0 10-18 0c0 6.8 9 16 9 16z" fill={p.c} stroke="#fff" strokeWidth="2" />
+              <circle cx="12" cy="12" r="3.4" fill="#fff" />
+            </svg>
+          </span>
+        ))}
+      </div>
+      {/* Search + chips */}
+      <div className="relative space-y-2 p-3 pt-4">
+        <div className="flex items-center gap-2 rounded-xl bg-white px-3 py-2 text-[10px] text-muted shadow-sm">
+          <svg width="11" height="11" viewBox="0 0 20 20" aria-hidden><circle cx="9" cy="9" r="6" stroke="currentColor" strokeWidth="2" fill="none" /><path d="M14 14l4 4" stroke="currentColor" strokeWidth="2" /></svg>
+          Search Tirana
+        </div>
+        <div className="flex gap-1.5 text-[9px]">
+          {["Cafés", "Events", "Food", "Shops"].map((c, i) => (
+            <span key={c} className={`rounded-full px-2.5 py-1 shadow-sm ${i === 0 ? "text-white" : "bg-white text-ink/70"}`} style={i === 0 ? { background: accent } : undefined}>{c}</span>
+          ))}
+        </div>
+      </div>
+      {/* Bottom sheet */}
+      <div className="absolute inset-x-2 bottom-2 rounded-2xl bg-white p-3 shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
+        <div className="mx-auto mb-2 h-1 w-8 rounded-full bg-ink/15" />
+        <div className="flex gap-2.5">
+          <div className="h-11 w-11 shrink-0 rounded-lg" style={{ background: `linear-gradient(135deg, ${accent}, #84cc16)` }} />
+          <div className="min-w-0 flex-1">
+            <p className="truncate text-[11px] font-semibold">Kafe Lulishte</p>
+            <p className="text-[9px] text-muted">Café · ★ 4.7 · 350 m</p>
+            <p className="mt-0.5 text-[9px] font-medium" style={{ color: accent }}>Open now</p>
+          </div>
+          <span className="flex h-7 w-7 items-center justify-center rounded-full bg-ink/5 text-[11px]">♡</span>
+        </div>
+        <div className="mt-2.5 grid grid-cols-2 gap-1.5 text-[9px] font-semibold">
+          <span className="rounded-lg py-1.5 text-center text-white" style={{ background: accent }}>Directions</span>
+          <span className="rounded-lg bg-ink/5 py-1.5 text-center">Details</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/** Card Cove: B2B client portal — wallet, products with client pricing and recent orders. */
+export function CardCoveScreen({ accent = "#4f46e5" }: { accent?: string }) {
+  const products = [
+    { name: "Gaming card", denom: "$50", tone: "#4f46e5" },
+    { name: "Streaming voucher", denom: "$25", tone: "#e11d48" },
+    { name: "App store card", denom: "$100", tone: "#0ea5e9" },
+    { name: "Shopping gift card", denom: "$200", tone: "#f59e0b" },
+  ];
+  return (
+    <div className="flex bg-white text-ink">
+      <aside className="hidden w-32 shrink-0 flex-col gap-0.5 border-r border-ink/8 bg-[#f7f8fa] p-3 text-[10.5px] sm:flex">
+        <p className="mb-3 flex items-center gap-1.5 font-semibold"><span className="h-4 w-4 rounded" style={{ background: accent }} /> Card Cove</p>
+        {["Dashboard", "Products", "Cart", "Orders", "Wallet", "Settings"].map((m, i) => (
+          <span key={m} className={`rounded-md px-2 py-1.5 ${i === 1 ? "bg-white font-medium shadow-[0_1px_2px_rgba(0,0,0,0.06)]" : "text-muted"}`}>{m}</span>
+        ))}
+      </aside>
+      <div className="min-w-0 flex-1 space-y-3 p-4">
+        <div className="flex items-center justify-between gap-3">
+          <p className="text-[13px] font-semibold">Products</p>
+          <div className="rounded-lg px-3 py-1.5 text-white" style={{ background: accent }}>
+            <p className="text-[8px] opacity-75">Wallet balance</p>
+            <p className="text-[12px] font-semibold leading-tight">$12,480.00</p>
+          </div>
+        </div>
+        <div className="grid grid-cols-2 gap-2">
+          {products.map((p) => (
+            <div key={p.name} className="rounded-lg border border-ink/8 p-2">
+              <div className="flex h-10 items-end rounded-md p-1.5 text-[9px] font-bold text-white" style={{ background: `linear-gradient(135deg, ${p.tone}, ${p.tone}aa)` }}>{p.denom}</div>
+              <p className="mt-1.5 truncate text-[10px] font-medium">{p.name}</p>
+              <div className="mt-1 flex items-center justify-between text-[9px]">
+                <span className="text-muted">In stock</span>
+                <span className="rounded px-1.5 py-0.5 font-semibold" style={{ background: `${accent}18`, color: accent }}>Add</span>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="rounded-lg border border-ink/8 text-[10px]">
+          {[["ORD-4821", "250 codes", "Delivered"], ["ORD-4820", "1,000 codes", "Processing"]].map(([id, q, st]) => (
+            <div key={id} className="flex items-center gap-3 border-b border-ink/6 px-3 py-2 last:border-0">
+              <span className="font-mono text-[9px] text-muted">{id}</span>
+              <span className="flex-1">{q}</span>
+              <span className={`rounded-full px-2 py-0.5 text-[9px] ${st === "Delivered" ? "bg-[#dcfce7] text-[#15803d]" : "bg-[#fef3c7] text-[#b45309]"}`}>{st}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /** Device frame + illustrative screen for a case study. */
 export function CaseMock({ kind, accent }: { kind: MockKind; accent: string }) {
-  if (kind === "mobile")
+  if (kind === "mobile" || kind === "albmap")
     return (
       <div className="mx-auto w-[44%] max-w-[230px]">
-        <PhoneFrame>
-          <MobileAppScreen accent={accent} />
-        </PhoneFrame>
+        <PhoneFrame>{kind === "albmap" ? <AlbmapScreen accent={accent} /> : <MobileAppScreen accent={accent} />}</PhoneFrame>
       </div>
+    );
+  if (kind === "cardcove")
+    return (
+      <BrowserFrame className="w-full" url="Card Cove · client portal">
+        <CardCoveScreen accent={accent} />
+      </BrowserFrame>
     );
   return (
     <BrowserFrame className="w-full">

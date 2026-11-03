@@ -16,8 +16,8 @@ and B are done, set `showSampleContent: false` in `content/site.ts`.
 | 6 | **Formspree form ID** | All forms | Free at formspree.io; set in Vercel env vars |
 | 7 | **Analytics choice** | Lead tracking | Plausible (recommended, no cookie banner) or Google Analytics ID |
 | 8 | **Quoting promise** | Engagement page, quote form | The site shows no prices or timelines — confirm "written proposal usually within 48 hours" after the call, and the 30-minute free call length |
-| 9 | **3–4 real case studies** | Work, home, solution pages | Per project: title, client type, challenge, solution, measurable result, 2–3 metrics, tech, and whether the client can be named |
-| 10 | **Screenshots** for each case study | Work pages | 2–3 per project, client branding blurred, ~1600×1100 PNG/WebP |
+| 9 | **Case studies** — AlbMap and Card Cove are written from the code (`content/work.ts`). Still needed: permission to name both clients, any real outcomes (launch date, users/downloads, store rating, orders processed, time saved), and 1–2 more projects if you have them | Work, home, solution pages | Without real outcomes the results describe what was delivered, not impact |
+| 10 | **Screenshots** — AlbMap app (map, business page, events), website and admin; Card Cove client portal (products, cart, wallet, orders) and admin reports | Work pages | 2–3 each, ~1600×1100 PNG/WebP, client data blurred. Current images are drawn mock-ups |
 | 11 | **Legal review** of privacy policy and terms | /privacy, /terms | Template text is there; confirm processors (Vercel, Formspree, Cal.com, analytics) |
 | 12 | **Office hours** | "We're online" indicator, FAQ | Currently 10 am–7 pm PKT, Mon–Sat |
 

@@ -33,7 +33,7 @@ export const solutions: Solution[] = [
       { title: "Analytics and crash monitoring", description: "Firebase Analytics and Crashlytics from day one." },
       { title: "Dedicated or project-based", description: "Hire a full-time developer monthly, or hand us a fixed-scope project." },
     ],
-    caseStudy: "booking-app",
+    caseStudy: "albmap",
     mock: "mobile",
     faq: [
       { q: "Is Flutter good enough for a production app?", a: "Yes. Flutter compiles to native code and is used in production by BMW, Google Pay and Alibaba. For most business apps it's indistinguishable from fully native." },
@@ -58,7 +58,7 @@ export const solutions: Solution[] = [
       { title: "Build in sprints", description: "Two-week sprints with a live demo after each one." },
       { title: "Launch and iterate", description: "Store release, analytics and a plan for version two." },
     ],
-    caseStudy: "booking-app",
+    caseStudy: "albmap",
     mock: "mobile",
     faq: [
       { q: "How fast can you launch an MVP?", a: "It depends on the features you need first. After a free call we agree the scope and a timeline in writing, and we usually suggest the leanest first release that proves your idea." },
@@ -83,7 +83,7 @@ export const solutions: Solution[] = [
       { title: "Field sales app", description: "Your sales team takes orders on their phones and sees live stock." },
       { title: "Reports", description: "Sales by customer, product, area and salesperson — in real time." },
     ],
-    caseStudy: "distribution-erp",
+    caseStudy: "card-cove",
     mock: "erp",
     faq: [
       { q: "How long does an ERP take?", a: "We start with the modules you need most so you go live quickly, then add the rest in phases. You get a written timeline after a free call." },
