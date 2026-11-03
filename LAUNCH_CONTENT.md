@@ -16,7 +16,7 @@ and B are done, set `showSampleContent: false` in `content/site.ts`.
 | 6 | **Formspree form ID** | All forms | Free at formspree.io; set in Vercel env vars |
 | 7 | **Analytics choice** | Lead tracking | Plausible (recommended, no cookie banner) or Google Analytics ID |
 | 8 | **Quoting promise** | Engagement page, quote form | The site shows no prices or timelines — confirm "written proposal usually within 48 hours" after the call, and the 30-minute free call length |
-| 9 | **Case studies** — two real projects are written up anonymously (clients under NDA). Optional: any outcomes you're allowed to share in general terms (e.g. "thousands of users", "4.8★ rating", "orders delivered in seconds"), and 1–2 more projects | Work, home, solution pages | No names, URLs, cities or languages that could identify the clients |
+| 9 | **Case studies** — three real projects are written up anonymously (clients under NDA). Three real projects written up; outcomes added for two. Optional: an outcome for the agency website (e.g. more enquiries) and more projects | Work, home, solution pages | No names, URLs, cities or languages that could identify the clients |
 | 10 | **Screenshots (optional)** — only if the NDA allows redesigned or blurred screens | Work pages | Otherwise the drawn mock-ups stay; they show no client branding |
 | 11 | **Legal review** of privacy policy and terms | /privacy, /terms | Template text is there; confirm processors (Vercel, Formspree, Cal.com, analytics) |
 | 12 | **Office hours** | "We're online" indicator, FAQ | Currently 10 am–7 pm PKT, Mon–Sat |
