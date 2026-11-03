@@ -15,7 +15,7 @@ export function LeadTracking() {
       if (href.startsWith(site.bookCallUrl)) track("Book call click", { page: location.pathname });
       else if (href.startsWith(site.whatsappUrl)) track("WhatsApp click", { page: location.pathname });
       else if (href.startsWith("mailto:")) track("Email click", { page: location.pathname });
-      else if (href.startsWith("/estimate")) track("Estimate click", { page: location.pathname });
+      else if (href.startsWith("/quote")) track("Quote click", { page: location.pathname });
     };
     document.addEventListener("click", onClick);
     return () => document.removeEventListener("click", onClick);

@@ -41,7 +41,7 @@ export default async function SolutionPage({ params }: { params: Promise<{ slug:
   return (
     <>
       <PageHero eyebrow={s.group === "Industries" ? "Industry solution" : "Service"} title={s.title} intro={s.description}>
-        <Button href="/estimate">Get an estimate</Button>
+        <Button href="/quote">Get a free quote</Button>
         <BookCallButton variant="ghost" />
       </PageHero>
 

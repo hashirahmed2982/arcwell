@@ -68,7 +68,7 @@ export function Hero() {
           <Reveal delay={0.8}>
             <p className="mt-6 text-sm text-muted">
               Not ready to talk?{" "}
-              <a href="/estimate" className="font-semibold text-accent hover:underline">Get a ballpark estimate in 2 minutes →</a>
+              <a href="/quote" className="font-semibold text-accent hover:underline">Tell us about your project in 2 minutes →</a>
             </p>
             <p className="mt-2 text-sm text-muted">
               {hero.servingLabel} <span className="font-medium text-ink">{markets.map((m) => m[0]).join(" · ")}</span>

@@ -21,7 +21,7 @@ export const agencies = {
     {
       name: "Project overflow",
       description: "Hand us a scoped project. We quote a fixed price, build it and hand it back ready for your client.",
-      points: ["Fixed price per project", "Weekly demos you can forward", "Handover docs and source code"],
+      points: ["Fixed price agreed per project", "Weekly demos you can forward", "Handover docs and source code"],
     },
     {
       name: "Dedicated developers",

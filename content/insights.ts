@@ -73,7 +73,7 @@ export const posts: Post[] = [
       { h: "What to include" },
       { list: ["The problem, in one paragraph: who has it and what it costs them today.", "Who the users are, and what the first version must let them do.", "Must-have versus nice-to-have features.", "Any existing systems it needs to connect to.", "Your timeline and budget range — even a rough one.", "Examples of apps you like, and why."] },
       { quote: "Sharing a budget range isn't a negotiating mistake. It lets the agency tell you what's realistic for that money." },
-      { p: "Don't have a brief yet? Our project estimate takes two minutes and gives you a starting point." },
+      { p: "Don't have a brief yet? Our free quote form takes two minutes and gives us everything we need for a first call." },
     ],
   },
 ];

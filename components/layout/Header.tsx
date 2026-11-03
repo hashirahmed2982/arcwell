@@ -53,8 +53,8 @@ export function Header() {
         </nav>
 
         <div className="hidden items-center gap-2 md:flex">
-          <Link href="/estimate" className="rounded-lg border border-line px-4 py-2.5 text-[14px] font-semibold transition-colors hover:border-ink/40">
-            Get an estimate
+          <Link href="/quote" className="rounded-lg border border-line px-4 py-2.5 text-[14px] font-semibold transition-colors hover:border-ink/40">
+            Get a free quote
           </Link>
           <Magnetic>
             <a href={site.bookCallUrl} target="_blank" rel="noopener noreferrer" className="inline-flex rounded-lg bg-ink px-5 py-2.5 text-[14px] font-semibold text-white transition-colors duration-200 hover:bg-accent">
@@ -97,7 +97,7 @@ export function Header() {
                 </motion.div>
               ))}
               <div className="mt-8 flex flex-wrap gap-3">
-                <Link href="/estimate" className="inline-flex rounded-lg bg-accent px-6 py-3.5 font-semibold text-white">Get an estimate</Link>
+                <Link href="/quote" className="inline-flex rounded-lg bg-accent px-6 py-3.5 font-semibold text-white">Get a free quote</Link>
                 <a href={site.bookCallUrl} target="_blank" rel="noopener noreferrer" className="inline-flex rounded-lg border border-line px-6 py-3.5 font-semibold">Book a call</a>
               </div>
             </nav>

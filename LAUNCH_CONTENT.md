@@ -15,7 +15,7 @@ and B are done, set `showSampleContent: false` in `content/site.ts`.
 | 5 | **LinkedIn company page URL** | Footer, contact | |
 | 6 | **Formspree form ID** | All forms | Free at formspree.io; set in Vercel env vars |
 | 7 | **Analytics choice** | Lead tracking | Plausible (recommended, no cookie banner) or Google Analytics ID |
-| 8 | **Real prices** | Pricing page, estimate calculator | Your 3 engagement-model "from" prices, the 5 starting prices, and roughly what features cost (I can derive the calculator from these) |
+| 8 | **Quoting promise** | Engagement page, quote form | The site shows no prices or timelines — confirm "written proposal usually within 48 hours" after the call, and the 30-minute free call length |
 | 9 | **3–4 real case studies** | Work, home, solution pages | Per project: title, client type, challenge, solution, measurable result, 2–3 metrics, tech, and whether the client can be named |
 | 10 | **Screenshots** for each case study | Work pages | 2–3 per project, client branding blurred, ~1600×1100 PNG/WebP |
 | 11 | **Legal review** of privacy policy and terms | /privacy, /terms | Template text is there; confirm processors (Vercel, Formspree, Cal.com, analytics) |
@@ -31,8 +31,8 @@ and B are done, set `showSampleContent: false` in `content/site.ts`.
 | 16 | **Review profiles** — Clutch / GoodFirms / Upwork links and ratings | Leave empty — badges hide |
 | 17 | **Company registration** — SECP no., NTN, PSEB no. | Leave empty — line hides |
 | 18 | **Demo apps** — names, 1-line descriptions, live URLs | Leave empty — section hides |
-| 19 | **Agencies page** — confirm the dedicated-developer price and that you offer a paid pilot and non-solicitation clause | Edit wording in `content/agencies.ts` |
-| 20 | **FAQ answers** — payment methods (bank / Wise / Payoneer), 30-day free fixes, response times | Edit in `content/pricing.ts` |
+| 19 | **Agencies page** — confirm you offer a paid pilot and a non-solicitation clause | Edit wording in `content/agencies.ts` |
+| 20 | **FAQ answers** — payment methods (bank / Wise / Payoneer), free-fixes period after launch, response times | Edit in `content/pricing.ts` |
 
 ## C. Nice to have (can follow after launch)
 

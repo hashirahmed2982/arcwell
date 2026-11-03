@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { site } from "@/content/site";
 
-/** WhatsApp button (all screens) and a sticky "Get an estimate" bar on mobile, shown after scrolling. */
+/** WhatsApp button (all screens) and a sticky "Get a free quote" bar on mobile, shown after scrolling. */
 export function FloatingActions() {
   const pathname = usePathname();
   const [show, setShow] = useState(false);
@@ -17,7 +17,7 @@ export function FloatingActions() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const onEstimate = pathname.startsWith("/estimate") || pathname.startsWith("/contact");
+  const onQuote = pathname.startsWith("/quote") || pathname.startsWith("/contact");
 
   return (
     <>
@@ -34,10 +34,10 @@ export function FloatingActions() {
         </svg>
       </a>
 
-      {!onEstimate && (
+      {!onQuote && (
         <div className={`fixed inset-x-0 bottom-0 z-[55] border-t border-line bg-white/95 p-3 backdrop-blur transition-transform duration-300 md:hidden ${show ? "translate-y-0" : "translate-y-full"}`}>
           <div className="flex gap-2">
-            <Link href="/estimate" className="flex-1 rounded-lg bg-accent py-3 text-center text-sm font-semibold text-white">Get an estimate</Link>
+            <Link href="/quote" className="flex-1 rounded-lg bg-accent py-3 text-center text-sm font-semibold text-white">Get a free quote</Link>
             <a href={site.bookCallUrl} target="_blank" rel="noopener noreferrer" className="flex-1 rounded-lg border border-line py-3 text-center text-sm font-semibold">Book a call</a>
           </div>
         </div>

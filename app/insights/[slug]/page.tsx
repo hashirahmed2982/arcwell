@@ -45,8 +45,8 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
             <Prose blocks={p.body} />
             <div className="mt-14 max-w-2xl rounded-2xl bg-paper-2 p-7">
               <p className="font-semibold">Planning a project?</p>
-              <p className="mt-1 text-muted">Get a ballpark price and timeline in two minutes.</p>
-              <Link href="/estimate" className="mt-4 inline-flex rounded-lg bg-accent px-5 py-3 text-sm font-semibold text-white">Get an estimate</Link>
+              <p className="mt-1 text-muted">Tell us about it in two minutes and get a free, no-obligation quote.</p>
+              <Link href="/quote" className="mt-4 inline-flex rounded-lg bg-accent px-5 py-3 text-sm font-semibold text-white">Get a free quote</Link>
             </div>
           </div>
         </div>

@@ -10,7 +10,7 @@ export const privacy: { title: string; description: string; body: Block[] } = {
   body: [
     { p: "Arcwell Digital (Pvt) Ltd. (\"we\", \"us\") respects your privacy. This policy explains what personal data we collect through this website, why, and your rights. It is written to meet the UK GDPR, the EU GDPR and the UAE PDPL." },
     { h: "What we collect" },
-    { list: ["Details you send us through our forms: name, email, company, project details and budget range.", "How you found us: referring website and campaign tags (for example, utm_source), stored in your browser.", "Anonymous usage statistics through our analytics provider."] },
+    { list: ["Details you send us through our forms: name, email, company, project details and, if you choose to share it, a budget.", "How you found us: referring website and campaign tags (for example, utm_source), stored in your browser.", "Anonymous usage statistics through our analytics provider."] },
     { h: "Why we use it" },
     { list: ["To reply to your enquiry and prepare a proposal (legitimate interest / pre-contract steps).", "To send a resource you asked for, such as a checklist (consent).", "To understand which pages and channels are useful (legitimate interest)."] },
     { h: "Who we share it with" },
@@ -30,7 +30,7 @@ export const terms: { title: string; description: string; body: Block[] } = {
   body: [
     { p: "By using this website you agree to these terms. If you don't agree, please don't use the site." },
     { h: "Information on this site" },
-    { p: "Prices, estimates and timelines on this site are indicative only and are not an offer. A project starts only once both parties sign a written agreement with a fixed scope and price." },
+    { p: "Nothing on this site is an offer or a quote. A project starts only once both parties sign a written agreement with a fixed scope and price." },
     { h: "Intellectual property" },
     { p: "The content and design of this website belong to Arcwell Digital (Pvt) Ltd. Client work shown in case studies is shown with permission or anonymised; it belongs to the respective clients." },
     { h: "Demo apps" },

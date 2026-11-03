@@ -1,78 +1,66 @@
-// Pricing, engagement models and FAQ.
-// ⚠️ All prices below are SAMPLE figures — replace with your real rates before launch (see TODO.md).
-
-export const currencies = [
-  // rate = how many units of this currency per 1 USD. Update occasionally.
-  { code: "USD", symbol: "$", rate: 1 },
-  { code: "GBP", symbol: "£", rate: 0.79 },
-  { code: "AED", symbol: "AED ", rate: 3.67 },
-  { code: "SAR", symbol: "SAR ", rate: 3.75 },
-] as const;
-
-export type CurrencyCode = (typeof currencies)[number]["code"];
-
-/** Formats a USD amount in the chosen currency, rounded to a friendly number. */
-export function money(usd: number, code: CurrencyCode) {
-  const c = currencies.find((x) => x.code === code) ?? currencies[0];
-  const v = usd * c.rate;
-  const step = v >= 10000 ? 500 : v >= 1000 ? 100 : 10;
-  return `${c.symbol}${(Math.round(v / step) * step).toLocaleString("en-US")}`;
-}
+// Engagement models and FAQ. Deliberately no prices or ranges: every project is quoted
+// individually after a free call, so leads of every size get in touch.
 
 export const pricing = {
   seo: {
-    title: "Pricing and engagement models",
-    description: "Fixed-price projects, monthly retainers or a dedicated developer. Typical starting prices for apps, web platforms and custom ERP.",
+    title: "Engagement models and pricing",
+    description:
+      "Fixed-scope projects, monthly retainers or dedicated developers. Every project is quoted individually after a free call — for budgets of every size.",
   },
-  eyebrow: "Pricing",
-  heading: "Clear pricing, before we write a line of code.",
-  intro: "Every project gets a fixed written quote after a free discovery call. These ranges help you plan.",
+  eyebrow: "Engagement",
+  heading: "A proposal built around your project — not a price list.",
+  intro:
+    "Every project is different, so we don't publish a rate card. Tell us what you need and we'll send a written proposal after a free call — whether you're testing an idea or replacing a whole system.",
   models: [
     {
-      name: "Fixed-price project",
-      bestFor: "New apps, MVPs and websites with a clear scope",
-      price: { from: 8000, unit: "per project" },
-      points: ["Fixed scope, timeline and price", "Paid in milestones, after each demo", "Two-week sprints with live demos", "30 days of free fixes after launch"],
-      cta: "Get an estimate",
-      href: "/estimate",
+      name: "Fixed-scope project",
+      bestFor: "New apps, MVPs, websites and ERP with a clear goal",
+      points: ["Scope, timeline and price agreed in writing", "Paid in milestones, after each demo", "Two-week sprints with live demos", "Free fixes period after launch"],
+      cta: "Get a free quote",
+      href: "/quote",
       featured: true,
     },
     {
       name: "Monthly retainer",
       bestFor: "Ongoing improvements, support and maintenance",
-      price: { from: 1500, unit: "per month" },
-      points: ["A set number of hours each month", "Updates, fixes, hosting and new features", "Priority response within one business day", "Cancel with 30 days' notice"],
+      points: ["A set number of hours each month", "Updates, fixes, hosting and new features", "Priority response from your team", "Flexible — adjust as you grow"],
       cta: "Book a call",
       href: "book",
       featured: false,
     },
     {
-      name: "Dedicated developer",
+      name: "Dedicated developers",
       bestFor: "Agencies and teams that need extra hands",
-      price: { from: 2800, unit: "per developer / month" },
-      points: ["Full-time Flutter, React or Node.js developer", "Works in your tools and your hours", "Managed and code-reviewed by our leads", "Scale up or down monthly"],
-      cta: "Hire a developer",
+      points: ["Full-time Flutter, React or Node.js developers", "Work in your tools and your hours", "Managed and code-reviewed by our leads", "Scale up or down monthly"],
+      cta: "Hire developers",
       href: "/agencies",
       featured: false,
     },
   ],
-  startingPrices: {
-    heading: "Typical starting prices",
-    note: "Final price depends on features, integrations and timeline. You always get a fixed quote first.",
-    items: [
-      { name: "Marketing website", from: 2500, weeks: "2–4 weeks" },
-      { name: "Mobile app MVP (iOS + Android)", from: 12000, weeks: "8–12 weeks" },
-      { name: "Web app or SaaS MVP", from: 15000, weeks: "8–14 weeks" },
-      { name: "Custom ERP — core modules", from: 18000, weeks: "10–16 weeks" },
-      { name: "UI/UX design only", from: 4000, weeks: "3–6 weeks" },
-    ],
-  },
+  howHeading: "How we price a project",
+  howSteps: [
+    { title: "Free call", description: "30 minutes on your goals, users and constraints. No commitment." },
+    { title: "Written proposal", description: "Scope, timeline, milestones and a fixed price — usually within 48 hours." },
+    { title: "Pay per milestone", description: "You pay as each milestone is delivered and approved." },
+    { title: "Grow at your pace", description: "Add features or move to a monthly plan when you're ready." },
+  ],
+  sizesHeading: "Projects of every size",
+  sizesIntro: "Some clients start with a single feature, others with a full platform. We'll shape the plan to your budget.",
+  sizes: [
+    { title: "Start small", description: "A prototype, an MVP or one ERP module to prove the idea before investing more." },
+    { title: "Build in phases", description: "Launch the core first, then add modules and features as the business grows." },
+    { title: "Full product", description: "Design, mobile, web and backend delivered end-to-end by one team." },
+  ],
 };
 
 export const faq = [
   {
+    q: "How much will my project cost?",
+    a: "It depends on what you need, so we don't guess before we understand it. After a free 30-minute call we send a written proposal with a fixed price. If your budget is limited, we'll suggest a smaller first phase rather than say no.",
+  },
+  {
     q: "How do you work across time zones?",
-    a: "Our office hours (10 am–7 pm PKT) overlap with the UK morning and the full Gulf working day. US clients get a daily written update and calls in their morning.",
+    a: "Our office hours overlap with the UK morning and the full Gulf working day. US clients get a daily written update and calls in their morning.",
   },
   {
     q: "How do payments work?",
@@ -88,7 +76,7 @@ export const faq = [
   },
   {
     q: "What happens after launch?",
-    a: "Every project includes 30 days of free fixes. After that, most clients move to a monthly support plan for updates, hosting and new features.",
+    a: "Every project includes a free fixes period. After that, most clients move to a monthly support plan for updates, hosting and new features.",
   },
   {
     q: "Can you work with our existing team or code?",

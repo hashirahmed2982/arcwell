@@ -1,5 +1,4 @@
 import { agencies } from "@/content/agencies";
-import { pricing } from "@/content/pricing";
 import { pageMetadata } from "@/lib/seo";
 import { PageHero } from "@/components/ui/PageHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -14,14 +13,12 @@ import { ReviewBadges } from "@/components/ui/ReviewBadges";
 
 export const metadata = pageMetadata({ ...agencies.seo, path: "/agencies" });
 
-const dedicated = pricing.models.find((m) => m.name === "Dedicated developer");
-
 export default function AgenciesPage() {
   return (
     <>
       <PageHero eyebrow={agencies.eyebrow} title={agencies.heading} intro={agencies.intro} highlight={["Our", "delivery"]}>
         <BookCallButton label={agencies.primaryCta} />
-        <Button href="/pricing" variant="ghost">See rates</Button>
+        <Button href="/quote" variant="ghost">Request developers</Button>
       </PageHero>
 
       <section className="border-b border-line py-8">
@@ -59,11 +56,6 @@ export default function AgenciesPage() {
                     <li key={p} className="flex gap-3"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />{p}</li>
                   ))}
                 </ul>
-                {i === 1 && dedicated && (
-                  <p className="mt-6 border-t border-line pt-5 text-sm text-muted">
-                    From <span className="font-semibold text-ink">${dedicated.price.from.toLocaleString()}</span> {dedicated.price.unit}
-                  </p>
-                )}
               </Reveal>
             ))}
           </div>

@@ -46,7 +46,7 @@ export const solutions: Solution[] = [
     navLabel: "MVP development",
     title: "MVP development for funded startups",
     description:
-      "Launch your MVP in 8–12 weeks with a senior product team: design, mobile, web and backend under one roof, at a fraction of US and UK rates.",
+      "Launch your MVP fast with a senior product team: design, mobile, web and backend under one roof, at a fraction of US and UK rates.",
     problems: [
       "Your runway is measured in months, and hiring a full team takes most of it.",
       "Agencies quote six figures for a first version you'll rewrite anyway.",
@@ -54,14 +54,14 @@ export const solutions: Solution[] = [
     ],
     deliverables: [
       { title: "Discovery and scope", description: "We cut the feature list down to what proves your idea." },
-      { title: "Design in two weeks", description: "Clickable Figma prototype you can test with users and show investors." },
+      { title: "Design first", description: "Clickable Figma prototype you can test with users and show investors." },
       { title: "Build in sprints", description: "Two-week sprints with a live demo after each one." },
       { title: "Launch and iterate", description: "Store release, analytics and a plan for version two." },
     ],
     caseStudy: "booking-app",
     mock: "mobile",
     faq: [
-      { q: "How fast can you launch an MVP?", a: "Most MVPs launch in 8–12 weeks, depending on features. We agree the timeline in writing before we start." },
+      { q: "How fast can you launch an MVP?", a: "It depends on the features you need first. After a free call we agree the scope and a timeline in writing, and we usually suggest the leanest first release that proves your idea." },
       { q: "Will we own the code?", a: "Yes. The code is in your GitHub from day one and the IP is assigned to you in the contract." },
     ],
   },
@@ -86,7 +86,7 @@ export const solutions: Solution[] = [
     caseStudy: "distribution-erp",
     mock: "erp",
     faq: [
-      { q: "How long does an ERP take?", a: "Core modules usually go live in 10–16 weeks. We start with the modules you need most and add the rest in phases." },
+      { q: "How long does an ERP take?", a: "We start with the modules you need most so you go live quickly, then add the rest in phases. You get a written timeline after a free call." },
       { q: "Can you import our existing Excel data?", a: "Yes. Data migration from spreadsheets or your old system is part of every ERP project." },
     ],
   },

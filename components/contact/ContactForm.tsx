@@ -17,7 +17,6 @@ export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [notConfigured, setNotConfigured] = useState(false);
   const [service, setService] = useState<string>("");
-  const [budget, setBudget] = useState<string>("");
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -29,7 +28,6 @@ export function ContactForm() {
       setStatus("success");
       form.reset();
       setService("");
-      setBudget("");
     } else {
       setNotConfigured(r === "not-configured");
       setStatus("error");
@@ -65,7 +63,10 @@ export function ContactForm() {
       </label>
 
       <ChipGroup legend={f.service} name="service" options={f.serviceOptions} value={service} onChange={setService} />
-      <ChipGroup legend={f.budget} name="budget" options={f.budgetOptions} value={budget} onChange={setBudget} />
+      <label className="block">
+        <span className="mb-2 block text-sm font-medium text-ink/70">{f.budget}</span>
+        <input name="budget" placeholder={f.budgetPlaceholder} className={field} />
+      </label>
 
       <label className="block">
         <span className="mb-2 block text-sm font-medium text-ink/70">{f.message}</span>

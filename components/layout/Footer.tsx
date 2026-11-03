@@ -14,8 +14,8 @@ export function Footer() {
     {
       title: "Resources",
       items: [
-        { label: "Get an estimate", href: "/estimate" },
-        { label: "Pricing", href: "/pricing" },
+        { label: "Get a free quote", href: "/quote" },
+        { label: "Engagement models", href: "/engagement" },
         { label: "ERP readiness checklist", href: `/resources/${erpChecklist.slug}` },
         { label: "Insights", href: "/insights" },
       ],

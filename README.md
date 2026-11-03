@@ -27,13 +27,14 @@ npm run typecheck
 
 ## Lead capture
 
-- **Forms** (contact, estimate, checklist) go through `lib/leads.ts`: emailed via Formspree and optionally POSTed to a
+- **Forms** (contact, free quote, checklist) go through `lib/leads.ts`: emailed via Formspree and optionally POSTed to a
   webhook (Google Sheet, HubSpot, Zapier). Each lead includes where the visitor came from (UTM tags / referrer, first touch).
-- **Events** tracked in Plausible or GA: Lead, Book call click, WhatsApp click, Email click, Estimate click, Estimate completed.
-- **Pages:** `/estimate` (calculator), `/pricing`, `/agencies`, `/solutions/*` (SEO landing pages), `/insights/*` (blog),
+- **Events** tracked in Plausible or GA: Lead, Book call click, WhatsApp click, Email click, Quote click, Quote brief completed.
+- **No prices anywhere:** every project is quoted after a call. `/quote` collects a project brief; `/engagement` explains the models.
+- **Pages:** `/quote` (free-quote brief), `/engagement`, `/agencies`, `/solutions/*` (SEO landing pages), `/insights/*` (blog),
   `/resources/erp-readiness-checklist` (email-gated), `/privacy`, `/terms`.
 - **Also:** embedded booking calendar and "we're online" indicator on Contact, FAQ with structured data,
-  review badges, WhatsApp button and a sticky mobile "Get an estimate" bar.
+  review badges, WhatsApp button and a sticky mobile "Get a free quote" bar.
 
 See `LAUNCH_CONTENT.md` for the content needed before launch.
 
@@ -50,8 +51,8 @@ All text lives in `/content`:
 | `content/work.ts` | Work page and **case studies** (each one becomes `/work/[slug]`) |
 | `content/about.ts` | About page |
 | `content/contact.ts` | Contact page and form labels |
-| `content/pricing.ts` | Engagement models, starting prices, currencies, FAQ |
-| `content/estimate.ts` | Estimate calculator questions and prices |
+| `content/pricing.ts` | Engagement models, how quoting works, FAQ (no prices by design) |
+| `content/quote.ts` | Free-quote form questions |
 | `content/agencies.ts` | White-label page for agencies |
 | `content/solutions.ts` | SEO landing pages (services and industries) |
 | `content/insights.ts` | Blog posts |
