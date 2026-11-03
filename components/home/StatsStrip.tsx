@@ -9,7 +9,7 @@ export function StatsStrip({ heading = "Arcwell Digital in numbers", tone = "lig
     <section className={`py-20 md:py-24 ${tone === "muted" ? "bg-paper-2" : ""}`}>
       <div className="container-x">
         <Reveal><p className="eyebrow mb-10">{heading}</p></Reveal>
-        <dl className="grid grid-cols-2 gap-y-10 lg:grid-cols-4">
+        <dl className={`grid grid-cols-2 gap-y-10 ${stats.length === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4"}`}>
           {stats.map((s, i) => (
             <Reveal key={s.label} delay={i * 0.08} className={`pr-6 ${i > 0 ? "lg:border-l lg:border-line lg:pl-8" : ""} ${i % 2 ? "border-l border-line pl-6 lg:pl-8" : ""}`}>
               <dd className="font-display text-5xl text-ink md:text-6xl">

@@ -14,7 +14,7 @@ export const home = {
       "Mobile apps, web platforms and custom ERP systems — designed and built by a senior team that delivers on time.",
     primaryCta: "Book a free call",
     secondaryCta: { label: "See our work", href: "/work" },
-    servingLabel: "Serving clients in",
+    servingLabel: "Working with clients across",
   },
   // Narrative section after the hero. Words darken as the visitor scrolls.
   story: {

@@ -55,19 +55,25 @@ export const assurances = [
   { title: "Reply within 24 hours", description: "A clear answer and next steps, fast." },
 ];
 
-// Markets we serve; drawn as arcs from Karachi on the hero globe. [label, latitude, longitude]
+// Where our clients are; drawn as unlabelled arcs from Karachi on the hero globe. [label, latitude, longitude]
 export const markets: [string, number, number][] = [
-  ["London", 51.5, -0.12],
-  ["Dubai", 25.2, 55.27],
-  ["Riyadh", 24.71, 46.68],
-  ["New York", 40.71, -74.0],
+  ["United Kingdom", 51.5, -0.12],
+  ["Switzerland", 47.37, 8.54],
+  ["Jordan", 31.95, 35.93],
+  ["UAE", 25.2, 55.27],
 ];
+// Shown as text instead of listing countries.
+export const servingRegions = "the UK, Europe and the Middle East";
 export const homeBase: [string, number, number] = ["Karachi", 24.86, 67.0];
 
 // ---- Real data. Sections stay hidden while these are empty (unless sample content is on). ----
 
 // Real numbers only. Example: { value: 40, suffix: "+", label: "Projects shipped" }
-const realStats: { value: number; suffix?: string; label: string }[] = [];
+const realStats: { value: number; suffix?: string; label: string }[] = [
+  { value: 10, suffix: "+", label: "Projects delivered" },
+  { value: 6, suffix: "+", label: "Years in business" },
+  { value: 4, label: "Countries served" },
+];
 
 // Real, approved quotes only.
 const realTestimonials: { quote: string; name: string; role: string; company?: string }[] = [];

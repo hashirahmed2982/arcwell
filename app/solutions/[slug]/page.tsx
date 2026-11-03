@@ -35,7 +35,7 @@ export default async function SolutionPage({ params }: { params: Promise<{ slug:
     name: s.title,
     description: s.description,
     provider: { "@type": "Organization", name: site.name, url: site.url },
-    areaServed: ["GB", "AE", "SA", "US", "PK"],
+    areaServed: ["GB", "CH", "JO", "AE", "Worldwide"],
   };
 
   return (

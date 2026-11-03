@@ -25,7 +25,7 @@ and B are done, set `showSampleContent: false` in `content/site.ts`.
 
 | # | What | If you don't have it yet |
 |---|------|--------------------------|
-| 13 | **Stats** (projects delivered, years, countries, retention) | Leave empty — the strip hides itself |
+| 13 | ~~Stats~~ — done: 10+ projects, 6+ years, 4 countries | — |
 | 14 | **Testimonials** — quote, name, role, company, permission | Leave empty — section hides |
 | 15 | **Client names** you're allowed to show in "Trusted by" | Leave empty — row hides |
 | 16 | **Review profiles** — Clutch / GoodFirms / Upwork links and ratings | Leave empty — badges hide |

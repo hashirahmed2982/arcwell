@@ -19,7 +19,7 @@ export function ClientLogos() {
   return (
     <section aria-label="Clients" className="border-b border-line py-12">
       <div className="container-x">
-        <p className="mb-8 text-center text-sm text-muted">Trusted by growing teams in the UK, the Gulf and Pakistan</p>
+        <p className="mb-8 text-center text-sm text-muted">Trusted by growing teams across the UK, Europe and the Middle East</p>
         <ul className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
           {clients.map((c, i) => (
             <Reveal as="li" key={c} delay={i * 0.04} className={`flex items-center gap-2 text-lg text-faint transition-colors duration-300 hover:text-ink md:text-xl ${styles[i % styles.length]}`}>

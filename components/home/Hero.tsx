@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { motion, useMotionValue, useReducedMotion, useSpring } from "framer-motion";
 import { home } from "@/content/home";
-import { assurances, markets } from "@/content/site";
+import { assurances, servingRegions } from "@/content/site";
 import { WordReveal } from "@/components/motion/WordReveal";
 import { Reveal } from "@/components/motion/Reveal";
 import { BookCallButton } from "@/components/ui/BookCallButton";
@@ -71,7 +71,7 @@ export function Hero() {
               <a href="/quote" className="font-semibold text-accent hover:underline">Tell us about your project in 2 minutes →</a>
             </p>
             <p className="mt-2 text-sm text-muted">
-              {hero.servingLabel} <span className="font-medium text-ink">{markets.map((m) => m[0]).join(" · ")}</span>
+              {hero.servingLabel} <span className="font-medium text-ink">{servingRegions}</span>
             </p>
           </Reveal>
         </div>
